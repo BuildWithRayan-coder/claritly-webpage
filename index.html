@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claritly - AI Writing Assistant for Chrome</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar glass">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="https://lxrrpuytbobhkkzvatew.supabase.co/storage/v1/object/public/assets/icon.png" alt="Claritly Logo" class="logo-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23FF7139%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 2L2 7l10 5 10-5-10-5z%22/%3E%3Cpath d=%22M2 17l10 5 10-5%22/%3E%3Cpath d=%22M2 12l10 5 10-5%22/%3E%3C/svg%3E'">
+                <span>Claritly</span>
+            </a>
+            <div class="nav-links">
+                <a href="#how-it-works">How it works</a>
+                <a href="#pricing">Pricing</a>
+                <a href="privacy.html">Privacy</a>
+                <div id="auth-buttons" class="auth-buttons">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="badge">✨ AI-Powered Chrome Extension</div>
+                <h1 class="hero-title">Write with Clarity, <br><span class="text-gradient">Everywhere You Go.</span></h1>
+                <p class="hero-subtitle">Highlight text on any website and let Claritly's AI instantly rewrite, refine, or adjust the tone of your message perfectly.</p>
+                <div class="hero-actions">
+                    <a href="#" class="btn btn-primary btn-large">Add to Chrome — It's Free</a>
+                    <a href="#how-it-works" class="btn btn-secondary btn-large">See How it Works</a>
+                </div>
+                <p class="hero-micro">No credit card required. Works on LinkedIn, Gmail, Twitter, and more.</p>
+            </div>
+            <div class="hero-image-wrapper glass">
+                <div class="fake-browser">
+                    <div class="browser-dots">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <div class="browser-content">
+                        <p style="color: #666; margin-bottom: 10px;">Before:</p>
+                        <p style="background: #f4f4f5; padding: 10px; border-radius: 8px;">"hey i cant come today i am sick maybe tomorrow"</p>
+                        <div class="arrow-down">↓</div>
+                        <p style="color: #FF7139; font-weight: 500; margin-bottom: 10px;">Professional Tone:</p>
+                        <p style="background: #fff5f2; border-left: 3px solid #FF7139; padding: 10px; border-radius: 4px;">"Hello, I am feeling unwell and will not be able to attend today. I hope to return tomorrow."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">How Claritly Works</h2>
+            <p class="section-subtitle">Seamlessly integrated into your browser. No copy-pasting required.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">1</div>
+                    <h3>Select Text</h3>
+                    <p>Highlight any text you've typed on any website (Gmail, LinkedIn, etc.)</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">2</div>
+                    <h3>Choose a Tone</h3>
+                    <p>Click the Claritly icon that appears and select 'Professional', 'Friendly', 'Soft', and more.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">3</div>
+                    <h3>Instantly Enhanced</h3>
+                    <p>Claritly's AI instantly rewrites your text and replaces it perfectly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="section">
+        <div class="container">
+            <h2 class="section-title">Simple, Transparent Pricing</h2>
+            <p class="section-subtitle">Start for free, upgrade when you need more power.</p>
+            
+            <div class="pricing-grid">
+                <!-- Free Tier -->
+                <div class="pricing-card glass-card">
+                    <h3>Free</h3>
+                    <div class="price">$0<span>/forever</span></div>
+                    <p>Perfect for casual writers.</p>
+                    <ul class="pricing-features">
+                        <li>✅ 100 AI Rewrites</li>
+                        <li>✅ Access to 5+ Tones</li>
+                        <li>✅ Works on all websites</li>
+                        <li>✅ Basic Grammar Fixes</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary btn-block">Get Started</a>
+                </div>
+                
+                <!-- Premium Tier -->
+                <div class="pricing-card glass-card premium-card">
+                    <div class="popular-badge">Most Popular</div>
+                    <h3>Premium</h3>
+                    <div class="price">$5<span>/month</span></div>
+                    <p>For professionals and power users.</p>
+                    <ul class="pricing-features">
+                        <li>🔥 Unlimited AI Rewrites</li>
+                        <li>🔥 Advanced AI Reasoning</li>
+                        <li>🔥 Custom Tones</li>
+                        <li>🔥 Priority Support</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary btn-block">Subscribe Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <span class="logo-text">Claritly</span>
+                    <p>Write with clarity, everywhere you go.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#how-it-works">How it works</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Claritly. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>
