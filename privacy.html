@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Claritly</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .privacy-content {
+            background: var(--white);
+            padding: 48px;
+            border-radius: 16px;
+            border: 1px solid var(--gray-light);
+            margin: 40px auto;
+            max-width: 800px;
+        }
+        .privacy-content h2 { margin-top: 32px; margin-bottom: 16px; }
+        .privacy-content p, .privacy-content ul { margin-bottom: 16px; color: var(--gray); }
+        .privacy-content ul { padding-left: 24px; }
+    </style>
+</head>
+<body class="bg-light">
+
+    <!-- Navigation -->
+    <nav class="navbar glass">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="https://lxrrpuytbobhkkzvatew.supabase.co/storage/v1/object/public/assets/icon.png" alt="Claritly Logo" class="logo-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23FF7139%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 2L2 7l10 5 10-5-10-5z%22/%3E%3Cpath d=%22M2 17l10 5 10-5%22/%3E%3Cpath d=%22M2 12l10 5 10-5%22/%3E%3C/svg%3E'">
+                <span>Claritly</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#how-it-works">How it works</a>
+                <a href="index.html#pricing">Pricing</a>
+                <div id="auth-buttons" class="auth-buttons">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Privacy Content -->
+    <header style="padding-top: 120px;">
+        <div class="container">
+            <h1 class="section-title text-gradient">Privacy Policy</h1>
+            <p class="section-subtitle">Last updated: August 2026</p>
+            
+            <div class="privacy-content glass-card">
+                <h2>1. Introduction</h2>
+                <p>Welcome to Claritly. We respect your privacy and are committed to protecting your personal data. This Privacy Policy will inform you as to how we look after your personal data when you visit our website and use our Chrome Extension.</p>
+
+                <h2>2. The Data We Collect About You</h2>
+                <p>We may collect, use, store and transfer different kinds of personal data about you which we have grouped together follows:</p>
+                <ul>
+                    <li><strong>Identity Data:</strong> includes first name, last name, and profile picture (via Google OAuth).</li>
+                    <li><strong>Contact Data:</strong> includes email address.</li>
+                    <li><strong>Usage Data:</strong> includes information about how you use our extension (e.g., how many AI rewrites you have performed).</li>
+                </ul>
+                <p><strong>Important Note on Text Data:</strong> We DO NOT permanently store the text you highlight and rewrite using our extension. Your text is securely transmitted to our AI provider (Groq) for processing and is immediately discarded. It is never used to train models.</p>
+
+                <h2>3. How We Use Your Data</h2>
+                <p>We will only use your personal data when the law allows us to. Most commonly, we will use your personal data in the following circumstances:</p>
+                <ul>
+                    <li>To authenticate you and provide you access to the Claritly Chrome Extension.</li>
+                    <li>To manage your subscription and usage limits.</li>
+                    <li>To notify you about changes to our terms or privacy policy.</li>
+                </ul>
+
+                <h2>4. Data Security</h2>
+                <p>We have put in place appropriate security measures to prevent your personal data from being accidentally lost, used or accessed in an unauthorised way, altered or disclosed. We use Supabase for secure, industry-standard authentication and database storage.</p>
+                
+                <h2>5. Contact Us</h2>
+                <p>If you have any questions about this Privacy Policy, please contact us at support@claritly.com.</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Claritly. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>
