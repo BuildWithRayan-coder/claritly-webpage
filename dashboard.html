@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Claritly</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-light">
+
+    <!-- Navigation -->
+    <nav class="navbar glass">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="https://lxrrpuytbobhkkzvatew.supabase.co/storage/v1/object/public/assets/icon.png" alt="Claritly Logo" class="logo-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23FF7139%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 2L2 7l10 5 10-5-10-5z%22/%3E%3Cpath d=%22M2 17l10 5 10-5%22/%3E%3Cpath d=%22M2 12l10 5 10-5%22/%3E%3C/svg%3E'">
+                <span>Claritly</span>
+            </a>
+            <div class="nav-links">
+                <div id="auth-buttons" class="auth-buttons">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <header class="dashboard-header">
+        <div class="container">
+            <h1 class="hero-title" style="font-size: 3rem;">Welcome back, <br><span class="text-gradient" id="user-name">Loading...</span></h1>
+            
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-title">Current Plan</div>
+                    <div class="stat-value text-gradient" id="plan-name">Free</div>
+                    <p style="color: var(--gray); margin-top: 10px;">Upgrade to Premium for unlimited rewrites and custom tones.</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-title">AI Rewrites Used</div>
+                    <div class="stat-value">
+                        <span id="usage-count">0</span> <span style="font-size: 1rem; color: var(--gray); font-weight: normal;">/ 100</span>
+                    </div>
+                    <div style="width: 100%; background: var(--gray-light); height: 8px; border-radius: 4px; margin-top: 16px;">
+                        <div id="usage-bar" style="width: 0%; background: var(--primary); height: 100%; border-radius: 4px; transition: width 0.5s ease;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 32px;">
+                <h3 style="margin-bottom: 16px;">Manage Subscription</h3>
+                <div class="glass-card" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h4 style="font-size: 1.25rem;">Premium Plan</h4>
+                        <p style="color: var(--gray);">Unlimited AI rewriting, all premium tones, and priority support.</p>
+                    </div>
+                    <button id="upgrade-btn" class="btn btn-primary">Upgrade for $5/mo</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
