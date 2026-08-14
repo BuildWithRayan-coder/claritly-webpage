@@ -61,23 +61,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (session) {
             // Logged in state
-            authButtonsContainer.innerHTML = `
-                <a href="dashboard.html" class="btn btn-primary" style="margin-right: 12px;">Dashboard</a>
-                <button id="logout-btn" class="btn" style="background: transparent; color: var(--dark); font-weight: 500; border: none; font-size: 1rem; cursor: pointer;">Log out</button>
-            `;
-            
-            const logoutBtn = document.getElementById('logout-btn');
-            if (logoutBtn) {
-                logoutBtn.addEventListener('click', async (e) => {
-                    e.preventDefault();
-                    if (window.supabaseClient) await window.supabaseClient.auth.signOut();
-                    
-                    let homeUrl = window.location.origin + '/index.html';
-                    if (window.location.pathname.includes('/claritly-webpage')) {
-                         homeUrl = window.location.origin + '/claritly-webpage/index.html';
-                    }
-                    window.location.href = homeUrl;
-                });
+            let isDashboard = window.location.pathname.includes('dashboard.html');
+            if (isDashboard) {
+                authButtonsContainer.innerHTML = `
+                    <a href="index.html" class="btn btn-primary" style="margin-right: 12px;">Home</a>
+                `;
+            } else {
+                authButtonsContainer.innerHTML = `
+                    <a href="dashboard.html" class="btn btn-primary" style="margin-right: 12px;">Dashboard</a>
+                `;
             }
         } else {
             // Logged out state
