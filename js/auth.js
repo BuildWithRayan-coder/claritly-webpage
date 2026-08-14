@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (session) {
             // Logged in state
-            let isDashboard = window.location.pathname.includes('dashboard.html');
+            let isDashboard = window.location.pathname.includes('dashboard');
             if (isDashboard) {
                 authButtonsContainer.innerHTML = `
                     <a href="index.html" class="btn btn-primary" style="margin-right: 12px;">Home</a>
@@ -88,11 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 
                 try {
-                    let redirectUrl = window.location.origin + '/dashboard.html';
-                    // If on github pages, handle subpath
-                    if (window.location.pathname.includes('/claritly-webpage')) {
-                         redirectUrl = window.location.origin + '/claritly-webpage/dashboard.html';
-                    }
+                    // Redirect back to the exact page the user is currently on (index.html)
+                    let redirectUrl = window.location.href;
                     
                     const { data, error } = await window.supabaseClient.auth.signInWithOAuth({
                         provider: 'google',
