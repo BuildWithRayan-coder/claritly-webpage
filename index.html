@@ -17,12 +17,11 @@
     <nav class="navbar glass">
         <div class="container nav-container">
             <a href="index.html" class="logo">
-                <img src="https://lxrrpuytbobhkkzvatew.supabase.co/storage/v1/object/public/assets/icon.png" alt="Claritly Logo" class="logo-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23FF7139%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 2L2 7l10 5 10-5-10-5z%22/%3E%3Cpath d=%22M2 17l10 5 10-5%22/%3E%3Cpath d=%22M2 12l10 5 10-5%22/%3E%3C/svg%3E'">
+                <img src="logo.png" alt="Claritly Logo" class="logo-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23FF7139%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 2L2 7l10 5 10-5-10-5z%22/%3E%3Cpath d=%22M2 17l10 5 10-5%22/%3E%3Cpath d=%22M2 12l10 5 10-5%22/%3E%3C/svg%3E'">
                 <span>Claritly</span>
             </a>
             <div class="nav-links">
-                <a href="#how-it-works">How it works</a>
-                <a href="#pricing">Pricing</a>
+                <a href="#tones">Tones</a>
                 <a href="privacy.html">Privacy</a>
                 <div id="auth-buttons" class="auth-buttons">
                     <!-- Injected by JS -->
@@ -35,92 +34,89 @@
     <header class="hero">
         <div class="container hero-container">
             <div class="hero-content">
-                <div class="badge">✨ AI-Powered Chrome Extension</div>
-                <h1 class="hero-title">Write with Clarity, <br><span class="text-gradient">Everywhere You Go.</span></h1>
-                <p class="hero-subtitle">Highlight text on any website and let Claritly's AI instantly rewrite, refine, or adjust the tone of your message perfectly.</p>
+                <h1 class="hero-title animate-entry">Communicate <span class="text-gradient">faster</span> <br>and <span class="text-gradient">precisely.</span></h1>
+                <p class="hero-subtitle animate-entry" style="margin-left: auto; margin-right: auto; text-align: center; max-width: 90%; color: var(--gray); font-size: 1.25rem; line-height: 1.6; font-weight: 400; margin-top: 16px; margin-bottom: 32px;">Your words, sharpened in seconds. A Chrome extension that lets you communicate more precisely and faster.</p>
                 <div class="hero-actions">
-                    <a href="#" class="btn btn-primary btn-large">Add to Chrome — It's Free</a>
-                    <a href="#how-it-works" class="btn btn-secondary btn-large">See How it Works</a>
+                    <a href="#" class="btn btn-premium btn-large">Add to Chrome</a>
                 </div>
-                <p class="hero-micro">No credit card required. Works on LinkedIn, Gmail, Twitter, and more.</p>
+
             </div>
             <div class="hero-image-wrapper glass">
-                <div class="fake-browser">
-                    <div class="browser-dots">
-                        <span></span><span></span><span></span>
-                    </div>
-                    <div class="browser-content">
-                        <p style="color: #666; margin-bottom: 10px;">Before:</p>
-                        <p style="background: #f4f4f5; padding: 10px; border-radius: 8px;">"hey i cant come today i am sick maybe tomorrow"</p>
-                        <div class="arrow-down">↓</div>
-                        <p style="color: #FF7139; font-weight: 500; margin-bottom: 10px;">Professional Tone:</p>
-                        <p style="background: #fff5f2; border-left: 3px solid #FF7139; padding: 10px; border-radius: 4px;">"Hello, I am feeling unwell and will not be able to attend today. I hope to return tomorrow."</p>
-                    </div>
+                <div class="video-header">
+                    <h3 class="video-title">Simple to use</h3>
+                </div>
+                <div class="video-container">
+                    <video src="demo.mp4" poster="logo.png" autoplay loop muted playsinline class="demo-video"></video>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- How It Works Section -->
-    <section id="how-it-works" class="section bg-light">
+    <!-- Supported Platforms -->
+    <section class="platforms-section">
         <div class="container">
-            <h2 class="section-title">How Claritly Works</h2>
-            <p class="section-subtitle">Seamlessly integrated into your browser. No copy-pasting required.</p>
-            
-            <div class="features-grid">
-                <div class="feature-card glass-card">
-                    <div class="feature-icon">1</div>
-                    <h3>Select Text</h3>
-                    <p>Highlight any text you've typed on any website (Gmail, LinkedIn, etc.)</p>
-                </div>
-                <div class="feature-card glass-card">
-                    <div class="feature-icon">2</div>
-                    <h3>Choose a Tone</h3>
-                    <p>Click the Claritly icon that appears and select 'Professional', 'Friendly', 'Soft', and more.</p>
-                </div>
-                <div class="feature-card glass-card">
-                    <div class="feature-icon">3</div>
-                    <h3>Instantly Enhanced</h3>
-                    <p>Claritly's AI instantly rewrites your text and replaces it perfectly.</p>
-                </div>
+            <p class="platforms-title">Works seamlessly in</p>
+            <div class="platforms-logos">
+                
+                <!-- Instagram (Colored) -->
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="url(#ig-grad)" class="platform-icon">
+                    <defs>
+                        <linearGradient id="ig-grad" x1="20%" y1="20%" x2="80%" y2="80%">
+                            <stop offset="0%" stop-color="#f09433" />
+                            <stop offset="25%" stop-color="#e6683c" />
+                            <stop offset="50%" stop-color="#dc2743" />
+                            <stop offset="75%" stop-color="#cc2366" />
+                            <stop offset="100%" stop-color="#bc1888" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 2A3.75 3.75 0 0 0 4 7.75v8.5A3.75 3.75 0 0 0 7.75 20h8.5A3.75 3.75 0 0 0 20 16.25v-8.5A3.75 3.75 0 0 0 16.25 4h-8.5ZM12 7.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5Zm4.8-1.55a1.25 1.25 0 1 1-1.25 1.25 1.25 1.25 0 0 1 1.25-1.25Z"/>
+                </svg>
+                
+                <!-- X (Twitter) (Sharp Black) -->
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="#000000" class="platform-icon">
+                    <path d="M18.9 2H22l-6.75 7.7 7.9 10.45h-6.2l-4.85-6.35-5.55 6.35H3.45l7.25-8.25L3.15 2h6.35l4.35 5.85L18.9 2Zm-1.1 16.35h1.7L8.35 3.65H6.5l11.3 14.7Z"/>
+                </svg>
+                
+                <!-- Facebook (Colored) -->
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="#1877F2" class="platform-icon">
+                    <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H7v-3h3V9.5C10 6.57 11.74 5 14.38 5c1.28 0 2.62.23 2.62.23v2.88h-1.48c-1.45 0-1.9.9-1.9 1.82V12h3.25l-.52 3h-2.73v6.8c4.56-.93 8-4.96 8-9.8z"/>
+                </svg>
+                
+                <!-- Reddit (Colored) -->
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="#FF4500" class="platform-icon">
+                    <path d="M22 11.5c0-1.38-1.12-2.5-2.5-2.5-.73 0-1.38.31-1.84.81A10.87 10.87 0 0 0 12 8.01l1.52-7.14 4.96 1.05c.08 1.12.98 2.01 2.1 2.01 1.18 0 2.13-.95 2.13-2.13S21.76-.33 20.58-.33c-.92 0-1.7.58-1.99 1.38l-5.38-1.14c-.33-.07-.63.15-.71.48l-1.66 7.76a10.8 10.8 0 0 0-5.69 1.83A2.47 2.47 0 0 0 3.32 9C1.94 9 .82 10.12.82 11.5c0 .92.5 1.73 1.23 2.15-.05.28-.08.57-.08.87 0 3.73 4.5 6.75 10.04 6.75s10.04-3.02 10.04-6.75c0-.3-.03-.59-.08-.87.73-.42 1.23-1.23 1.23-2.15Zm-14.07 1.82c0-1.1.9-1.99 1.99-1.99s1.99.9 1.99 1.99-.9 1.99-1.99 1.99-1.99-.9-1.99-1.99Zm9.14 4.56c-1.32 1.32-3.71 1.4-5.06 1.4h-.01c-1.35 0-3.75-.08-5.07-1.4-.23-.23-.23-.59 0-.82.23-.23.59-.23.82 0 1.01 1.01 3.01 1.06 4.25 1.06h.01c1.24 0 3.25-.05 4.26-1.06.23-.23.59-.23.82 0 .22.23.22.59 0 .82Zm-.49-2.57c-1.1 0-1.99-.9-1.99-1.99s.9-1.99 1.99-1.99 1.99.9 1.99 1.99-.9 1.99-1.99 1.99Z"/>
+                </svg>
+                <span class="platforms-more">+ more</span>
             </div>
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section id="pricing" class="section">
+    <!-- Tones Section -->
+    <section id="tones" class="section bg-light">
         <div class="container">
-            <h2 class="section-title">Simple, Transparent Pricing</h2>
-            <p class="section-subtitle">Start for free, upgrade when you need more power.</p>
+            <h2 class="section-title">Difference between Tones</h2>
+            <p class="section-subtitle">Instantly rewrite your text to match any situation.</p>
             
-            <div class="pricing-grid">
-                <!-- Free Tier -->
-                <div class="pricing-card glass-card">
-                    <h3>Free</h3>
-                    <div class="price">$0<span>/forever</span></div>
-                    <p>Perfect for casual writers.</p>
-                    <ul class="pricing-features">
-                        <li>✅ 100 AI Rewrites</li>
-                        <li>✅ Access to 5+ Tones</li>
-                        <li>✅ Works on all websites</li>
-                        <li>✅ Basic Grammar Fixes</li>
-                    </ul>
-                    <a href="#" class="btn btn-secondary btn-block">Get Started</a>
+            <div class="tones-container">
+                <div class="tone-item">
+                    <h3 class="tone-name">Professional</h3>
+                    <p class="tone-text">"Hello, I hope you're doing well. It's a pleasure to reconnect with you."</p>
                 </div>
-                
-                <!-- Premium Tier -->
-                <div class="pricing-card glass-card premium-card">
-                    <div class="popular-badge">Most Popular</div>
-                    <h3>Premium</h3>
-                    <div class="price">$5<span>/month</span></div>
-                    <p>For professionals and power users.</p>
-                    <ul class="pricing-features">
-                        <li>🔥 Unlimited AI Rewrites</li>
-                        <li>🔥 Advanced AI Reasoning</li>
-                        <li>🔥 Custom Tones</li>
-                        <li>🔥 Priority Support</li>
-                    </ul>
-                    <a href="#" class="btn btn-primary btn-block">Subscribe Now</a>
+                <div class="tone-item">
+                    <h3 class="tone-name">Friendly</h3>
+                    <p class="tone-text">"Hey! How are you doing? So good to catch up with you again!"</p>
+                </div>
+                <div class="tone-item">
+                    <h3 class="tone-name">Short</h3>
+                    <p class="tone-text">"Hi! How are you? Great to chat again."</p>
+                </div>
+                <div class="tone-item">
+                    <h3 class="tone-name">Confident</h3>
+                    <p class="tone-text">"Hello! Hope you're doing great — glad to be back in touch."</p>
+                </div>
+                <div class="tone-item">
+                    <h3 class="tone-name">Polite</h3>
+                    <p class="tone-text">"Hello, I hope you are well. It's truly a pleasure to speak with you again."</p>
                 </div>
             </div>
         </div>
@@ -132,11 +128,14 @@
             <div class="footer-top">
                 <div class="footer-brand">
                     <span class="logo-text">Claritly</span>
-                    <p>Write with clarity, everywhere you go.</p>
+                    <p>Communicate faster and precisely.</p>
                 </div>
                 <div class="footer-links">
-                    <a href="#how-it-works">How it works</a>
-                    <a href="#pricing">Pricing</a>
+                    <a href="mailto:buildwithrayan@gmail.com" class="footer-email">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        buildwithrayan@gmail.com
+                    </a>
+                    <a href="#tones">Tones</a>
                     <a href="privacy.html">Privacy Policy</a>
                 </div>
             </div>
