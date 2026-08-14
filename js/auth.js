@@ -11,18 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
         window.supabaseClient.auth.getSession()
             .then(({ data: { session } }) => {
                 updateUI(session);
-                
-                // AUTOMATIC DASHBOARD REDIRECT (only if on homepage)
-                if (session && (window.location.pathname === '/' || window.location.pathname.endsWith('index.html'))) {
-                    console.log("Logged in! Redirecting to dashboard...");
-                    // Construct dashboard URL safely
-                    let dashUrl = window.location.origin + window.location.pathname.replace('index.html', '') + 'dashboard.html';
-                    if (dashUrl.endsWith('/dashboard.html') && !dashUrl.includes('index.html')) {
-                        window.location.href = dashUrl;
-                    } else {
-                        window.location.href = window.location.origin + '/dashboard.html';
-                    }
-                }
             })
             .catch(err => {
                 console.error("Supabase getSession error:", err);
