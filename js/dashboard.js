@@ -1,65 +1,60 @@
 // dashboard.js - Fetches data for the dashboard
 
 document.addEventListener('DOMContentLoaded', async () => {
-    // 1. Ensure Supabase client is loaded
-    if (typeof window.supabaseClient === 'undefined') {
-        alert("Database connection failed. Please refresh the page.");
-        return;
-    }
-
-    // 2. Check if user is logged in
-    const { data: { session } } = await window.supabaseClient.auth.getSession();
+    // 1. Check if user is logged in
+    const { data: { session } } = await supabase.auth.getSession();
     
     if (!session) {
         // Redirect to home if not logged in
-        let homeUrl = window.location.origin + '/index.html';
-        if (window.location.pathname.includes('/claritly-webpage')) {
-             homeUrl = window.location.origin + '/claritly-webpage/index.html';
-        }
-        window.location.href = homeUrl;
+        window.location.href = 'index.html';
         return;
     }
 
     const user = session.user;
     
-    // 3. Display Name
+    // 2. Display Name
     const nameElement = document.getElementById('user-name');
     if (nameElement) {
         const fullName = user.user_metadata?.full_name || user.email.split('@')[0];
         nameElement.textContent = fullName;
     }
 
-    // 3.5 Determine Plan & Limits
-    const isPaid = user.user_metadata?.plan === 'paid';
-    const planLimit = isPaid ? 5000 : 100;
-    const planName = isPaid ? 'Premium' : 'Free';
-    
-    const planNameEl = document.getElementById('plan-name');
-    if (planNameEl) planNameEl.textContent = planName;
-    
-    const usageLimitEl = document.getElementById('usage-limit');
-    if (usageLimitEl) usageLimitEl.textContent = planLimit.toLocaleString();
-    
-    // Hide upgrade section if paid
-    if (isPaid) {
-        const upgradeSection = document.getElementById('upgrade-section');
-        if (upgradeSection) upgradeSection.style.display = 'none';
-    }
-
-    // 4. Fetch Usage Data from user_usage table
-    async function fetchUsage() {
+    // 2.5 Fetch plan + usage from user_usage table (single source of truth)
+    async function fetchUsageAndPlan() {
         try {
-            const { data, error } = await window.supabaseClient
+            const { data, error } = await supabase
                 .from('user_usage')
-                .select('rewrites_count')
+                .select('rewrites_count, plan')
                 .eq('user_id', user.id)
                 .single();
                 
             let count = 0;
+            let userPlan = 'free';
+            
             if (!error && data) {
                 count = data.rewrites_count || 0;
+                userPlan = data.plan || 'free';
             }
             
+            const isPaid = userPlan === 'paid';
+            const planLimit = isPaid ? 5000 : 100;
+            const planName = isPaid ? 'Premium' : 'Free';
+            
+            // Update plan name
+            const planNameEl = document.getElementById('plan-name');
+            if (planNameEl) planNameEl.textContent = planName;
+            
+            // Update usage limit
+            const usageLimitEl = document.getElementById('usage-limit');
+            if (usageLimitEl) usageLimitEl.textContent = planLimit.toLocaleString();
+            
+            // Hide upgrade section if paid
+            if (isPaid) {
+                const upgradeSection = document.getElementById('upgrade-section');
+                if (upgradeSection) upgradeSection.style.display = 'none';
+            }
+            
+            // Update usage count
             const usageCountEl = document.getElementById('usage-count');
             if (usageCountEl) usageCountEl.textContent = count.toLocaleString();
             
@@ -77,9 +72,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-    fetchUsage();
+    fetchUsageAndPlan();
 
-    // 5. Handle Upgrade Button Placeholder
+    // 4. Handle Upgrade Button Placeholder
     const upgradeBtn = document.getElementById('upgrade-btn');
     if (upgradeBtn) {
         upgradeBtn.addEventListener('click', () => {
