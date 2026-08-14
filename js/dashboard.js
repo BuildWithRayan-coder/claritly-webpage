@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     let session = null;
     
     try {
-        const result = await supabase.auth.getSession();
+        const result = await window.supabaseClient.auth.getSession();
         session = result?.data?.session;
     } catch (err) {
         console.error("getSession failed:", err);
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Wait briefly for auth state to resolve (e.g. after OAuth redirect)
         session = await new Promise((resolve) => {
             const timeout = setTimeout(() => resolve(null), 3000);
-            const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, s) => {
+            const { data: { subscription } } = window.supabaseClient.auth.onAuthStateChange((_event, s) => {
                 if (s) {
                     clearTimeout(timeout);
                     subscription.unsubscribe();
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Fetch usage from user_usage table
     try {
-        const { data, error } = await supabase
+        const { data, error } = await window.supabaseClient
             .from('user_usage')
             .select('rewrites_count')
             .eq('user_id', user.id)
