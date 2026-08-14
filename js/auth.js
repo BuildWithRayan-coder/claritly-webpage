@@ -83,7 +83,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 logoutBtn.addEventListener('click', async (e) => {
                     e.preventDefault();
                     if (window.supabaseClient) await window.supabaseClient.auth.signOut();
-                    window.location.href = window.location.origin + '/index.html';
+                    
+                    let homeUrl = window.location.origin + '/index.html';
+                    if (window.location.pathname.includes('/claritly-webpage')) {
+                         homeUrl = window.location.origin + '/claritly-webpage/index.html';
+                    }
+                    window.location.href = homeUrl;
                 });
             }
         } else {
