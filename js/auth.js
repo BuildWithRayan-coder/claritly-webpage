@@ -6,11 +6,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // Render logged out state immediately so the buttons are always visible on load
     updateUI(null);
     
-    // Then safely check Supabase asynchronously
+    // Check Supabase asynchronously
     if (typeof supabase !== 'undefined') {
         supabase.auth.getSession()
             .then(({ data: { session } }) => {
                 updateUI(session);
+                
+                // AUTOMATIC DASHBOARD REDIRECT (only if on homepage)
+                if (session && (window.location.pathname === '/' || window.location.pathname.endsWith('index.html'))) {
+                    console.log("Logged in! Redirecting to dashboard...");
+                    // Construct dashboard URL safely
+                    let dashUrl = window.location.origin + window.location.pathname.replace('index.html', '') + 'dashboard.html';
+                    if (dashUrl.endsWith('/dashboard.html') && !dashUrl.includes('index.html')) {
+                        window.location.href = dashUrl;
+                    } else {
+                        window.location.href = window.location.origin + '/dashboard.html';
+                    }
+                }
             })
             .catch(err => {
                 console.error("Supabase getSession error:", err);
@@ -37,14 +49,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 2. Manage Top Banner for logged-in state
         let banner = document.getElementById('claritly-auth-banner');
-        if (session) {
+        if (session && session.user) {
             if (!banner) {
                 banner = document.createElement('div');
                 banner.id = 'claritly-auth-banner';
                 banner.style = "background: #2563eb; color: white; text-align: center; padding: 12px 20px; font-weight: 500; font-size: 0.95rem; display: flex; justify-content: center; align-items: center; gap: 8px; z-index: 1000; position: relative;";
                 document.body.insertBefore(banner, document.body.firstChild);
             }
-            const email = session.user.email;
+            const email = session.user.email || 'User';
             banner.innerHTML = `
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
@@ -68,9 +80,10 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const logoutBtn = document.getElementById('logout-btn');
             if (logoutBtn) {
-                logoutBtn.addEventListener('click', async () => {
+                logoutBtn.addEventListener('click', async (e) => {
+                    e.preventDefault();
                     await supabase.auth.signOut();
-                    window.location.href = 'index.html';
+                    window.location.href = window.location.origin + '/index.html';
                 });
             }
         } else {
@@ -82,23 +95,51 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const handleAuth = async (e) => {
                 e.preventDefault();
+                console.log("Auth button clicked!");
+                
                 if (typeof supabase === 'undefined') {
-                    alert("Authentication is currently unavailable.");
+                    alert("Authentication is currently unavailable. Supabase is not loaded.");
                     return;
                 }
-                const { data, error } = await supabase.auth.signInWithOAuth({
-                    provider: 'google'
-                });
-                if (error) {
-                    console.error("Auth Error:", error.message);
-                    alert("Authentication Error: " + error.message);
+                
+                try {
+                    let redirectUrl = window.location.origin + '/dashboard.html';
+                    // If on github pages, handle subpath
+                    if (window.location.pathname.includes('/claritly-webpage')) {
+                         redirectUrl = window.location.origin + '/claritly-webpage/dashboard.html';
+                    }
+                    
+                    const { data, error } = await supabase.auth.signInWithOAuth({
+                        provider: 'google',
+                        options: {
+                            redirectTo: redirectUrl
+                        }
+                    });
+                    
+                    if (error) {
+                        console.error("Auth Error:", error.message);
+                        alert("Authentication Error: " + error.message + "\\n\\nDid you enable Google Auth in Supabase?");
+                    }
+                } catch (err) {
+                    console.error("Critical Auth Error:", err);
+                    alert("Critical Error: " + err.message);
                 }
             };
 
-            const loginBtn = document.getElementById('login-btn');
-            const signupBtn = document.getElementById('signup-btn');
-            if (loginBtn) loginBtn.addEventListener('click', handleAuth);
-            if (signupBtn) signupBtn.addEventListener('click', handleAuth);
+            // Force fresh listeners by replacing the nodes
+            let loginBtn = document.getElementById('login-btn');
+            let signupBtn = document.getElementById('signup-btn');
+            
+            if (loginBtn) {
+                let newLoginBtn = loginBtn.cloneNode(true);
+                loginBtn.parentNode.replaceChild(newLoginBtn, loginBtn);
+                newLoginBtn.addEventListener('click', handleAuth);
+            }
+            if (signupBtn) {
+                let newSignupBtn = signupBtn.cloneNode(true);
+                signupBtn.parentNode.replaceChild(newSignupBtn, signupBtn);
+                newSignupBtn.addEventListener('click', handleAuth);
+            }
         }
     }
 });
