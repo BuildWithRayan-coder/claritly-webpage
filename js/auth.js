@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     updateUI(null);
     
     // Check Supabase asynchronously
-    if (typeof supabase !== 'undefined') {
-        supabase.auth.getSession()
+    if (typeof window.supabaseClient !== 'undefined') {
+        window.supabaseClient.auth.getSession()
             .then(({ data: { session } }) => {
                 updateUI(session);
                 
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
         // Listen for auth changes
-        supabase.auth.onAuthStateChange((_event, session) => {
+        window.supabaseClient.auth.onAuthStateChange((_event, session) => {
             updateUI(session);
         });
     } else {
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (logoutBtn) {
                 logoutBtn.addEventListener('click', async (e) => {
                     e.preventDefault();
-                    await supabase.auth.signOut();
+                    if (window.supabaseClient) await window.supabaseClient.auth.signOut();
                     window.location.href = window.location.origin + '/index.html';
                 });
             }
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault();
                 console.log("Auth button clicked!");
                 
-                if (typeof supabase === 'undefined') {
+                if (typeof window.supabaseClient === 'undefined') {
                     alert("Authentication is currently unavailable. Supabase is not loaded.");
                     return;
                 }
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
                          redirectUrl = window.location.origin + '/claritly-webpage/dashboard.html';
                     }
                     
-                    const { data, error } = await supabase.auth.signInWithOAuth({
+                    const { data, error } = await window.supabaseClient.auth.signInWithOAuth({
                         provider: 'google',
                         options: {
                             redirectTo: redirectUrl
