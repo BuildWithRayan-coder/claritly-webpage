@@ -45,11 +45,12 @@
 
             </div>
             <div class="hero-image-wrapper glass">
-                <div class="video-header">
-                    <h3 class="video-title">Simple to use</h3>
+                <div class="video-header" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 24px 20px 20px;">
+                    <h3 class="video-title" style="font-size: 24px; font-weight: 700; color: #111; margin-bottom: 8px;">Easy to use</h3>
+                    <p style="color: var(--gray, #666); font-size: 16px; margin: 0;">Make any text precise by just selecting text and make this message better.</p>
                 </div>
-                <div class="video-container">
-                    <video src="demo.mp4" poster="logo.png" autoplay loop muted playsinline class="demo-video"></video>
+                <div class="image-container" style="padding: 0; width: 100%;">
+                    <img src="Work%20image.png" alt="Claritly in action" style="width: 100%; height: auto; border-radius: 0 0 12px 12px; display: block;">
                 </div>
             </div>
         </div>
@@ -98,29 +99,78 @@
     <section id="tones" class="section bg-light">
         <div class="container">
             <h2 class="section-title">Difference between Tones</h2>
-            <p class="section-subtitle">Instantly rewrite your text to match any situation.</p>
-            
-            <div class="tones-container">
-                <div class="tone-item">
-                    <h3 class="tone-name">Professional</h3>
-                    <p class="tone-text">"Hello, I hope you're doing well. It's a pleasure to reconnect with you."</p>
+            <div class="tones-grid">
+                
+                <!-- Tone Card: Friendly -->
+                <div class="tone-card">
+                    <div class="tone-header">
+                        <span class="tone-icon" style="background: #e8f5e9; color: #4caf50;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                                <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                            </svg>
+                        </span>
+                        <h4 class="tone-name">Friendly</h4>
+                    </div>
+                    <div class="tone-chat">
+                        <div class="chat-message before">
+                            <span class="badge badge-before">Before</span>
+                            <p>Send me the report now.</p>
+                        </div>
+                        <div class="chat-message after">
+                            <span class="badge badge-after">After</span>
+                            <p>Could you please send me the report when you have a moment? Thanks!</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="tone-item">
-                    <h3 class="tone-name">Friendly</h3>
-                    <p class="tone-text">"Hey! How are you doing? So good to catch up with you again!"</p>
+
+                <!-- Tone Card: Professional -->
+                <div class="tone-card">
+                    <div class="tone-header">
+                        <span class="tone-icon" style="background: #e3f2fd; color: #2196f3;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                            </svg>
+                        </span>
+                        <h4 class="tone-name">Professional</h4>
+                    </div>
+                    <div class="tone-chat">
+                        <div class="chat-message before">
+                            <span class="badge badge-before">Before</span>
+                            <p>my idea is way better than this.</p>
+                        </div>
+                        <div class="chat-message after">
+                            <span class="badge badge-after">After</span>
+                            <p>I believe I have an alternative approach that might be more effective. Would you like to discuss it?</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="tone-item">
-                    <h3 class="tone-name">Short</h3>
-                    <p class="tone-text">"Hi! How are you? Great to chat again."</p>
+
+                <!-- Tone Card: Direct -->
+                <div class="tone-card">
+                    <div class="tone-header">
+                        <span class="tone-icon" style="background: #fff3e0; color: #ff9800;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                            </svg>
+                        </span>
+                        <h4 class="tone-name">Direct</h4>
+                    </div>
+                    <div class="tone-chat">
+                        <div class="chat-message before">
+                            <span class="badge badge-before">Before</span>
+                            <p>I was thinking maybe we could sort of try to finish it by friday if that's okay?</p>
+                        </div>
+                        <div class="chat-message after">
+                            <span class="badge badge-after">After</span>
+                            <p>Let's aim to finish this by Friday.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="tone-item">
-                    <h3 class="tone-name">Confident</h3>
-                    <p class="tone-text">"Hello! Hope you're doing great — glad to be back in touch."</p>
-                </div>
-                <div class="tone-item">
-                    <h3 class="tone-name">Polite</h3>
-                    <p class="tone-text">"Hello, I hope you are well. It's truly a pleasure to speak with you again."</p>
-                </div>
+
             </div>
         </div>
     </section>
@@ -128,86 +178,70 @@
     <!-- Pricing Section -->
     <section id="pricing" class="section">
         <div class="container">
-            <h2 class="section-title">Pricing</h2>
-            <p class="section-subtitle">Choose the perfect plan to communicate precisely.</p>
-            
+            <h2 class="section-title">Pricing Plans</h2>
             <div class="pricing-grid">
+                
                 <!-- Free Plan -->
-                <div class="pricing-card glass-card">
-                    <h3 class="tone-name" style="color: var(--dark); font-size: 1.5rem;">Free</h3>
-                    <div class="price">
-                        $0<span>/month</span>
+                <div class="pricing-card free-plan">
+                    <div class="pricing-header">
+                        <h3>Free</h3>
+                        <div class="price">
+                            <span class="currency">$</span><span class="amount">0</span><span class="period">/month</span>
+                        </div>
                     </div>
                     <ul class="pricing-features">
-                        <li>
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            100 Rewrites per month
-                        </li>
-                        <li>
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            All Tones
-                        </li>
-                        <li style="color: #999;">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                            No big paragraphs
-                        </li>
+                        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> 100 Rewrites per month</li>
+                        <li class="disabled"><svg class="x-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> No Big Paragraphs Support</li>
+                        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Standard Tones</li>
+                        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Community Support</li>
                     </ul>
-                    <a href="dashboard.html" class="btn btn-secondary btn-block">Get Started</a>
+                    <a href="dashboard.html" class="btn btn-outline btn-full">Get Started</a>
                 </div>
 
                 <!-- Pro Plan -->
-                <div class="pricing-card glass-card premium-card">
-                    <div class="popular-badge">Most Popular</div>
-                    <h3 class="tone-name" style="color: var(--dark); font-size: 1.5rem;">Pro</h3>
-                    <div class="price">
-                        $8<span>/month</span>
+                <div class="pricing-card pro-plan premium">
+                    <div class="badge-popular">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3>Pro</h3>
+                        <div class="price">
+                            <span class="currency">$</span><span class="amount">8</span><span class="period">/month</span>
+                        </div>
                     </div>
                     <ul class="pricing-features">
-                        <li>
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <strong>10,000 Rewrites</strong>
-                        </li>
-                        <li>
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <strong>Big Paragraphs Upgrade</strong>
-                        </li>
-                        <li>
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            All Tones
-                        </li>
+                        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> 10,000 Rewrites per month</li>
+                        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Big Paragraphs Upgrade</li>
+                        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> All Premium Tones</li>
+                        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Priority Support</li>
                     </ul>
-                    <!-- Add your checkout link here -->
-                    <a href="#" class="btn btn-primary btn-block">Upgrade to Pro</a>
+                    <a class="btn btn-premium btn-full buy-button" href="https://gum.co/mndgco">Upgrade to Pro</a>
                 </div>
+
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-top">
-                <div class="footer-brand">
-                    <span class="logo-text">Claritly</span>
-                    <p>Communicate faster and precisely.</p>
-                </div>
-                <div class="footer-links">
-                    <a href="mailto:buildwithrayan7@gmail.com" class="footer-email">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                        buildwithrayan7@gmail.com
-                    </a>
-                    <a href="#tones">Tones</a>
-                    <a href="privacy.html">Privacy Policy</a>
-                </div>
+        <div class="container footer-container">
+            <div class="footer-logo">
+                <img src="logo.png" alt="Claritly Logo" class="logo-img" onerror="this.style.display='none'">
+                <span style="font-size: 1.25rem; font-weight: 600; color: #111;">Claritly</span>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Claritly. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#tones">Tones</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="mailto:buildwithrayan7@gmail.com">buildwithrayan7@gmail.com</a>
+            </div>
+            <div class="footer-copyright">
+                &copy; 2026 Claritly. All rights reserved.
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
+    <!-- Configuration and Auth Scripts -->
+    <!-- Supabase Client -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Our Scripts -->
     <script src="js/config.js"></script>
     <script src="js/auth.js"></script>
 </body>
