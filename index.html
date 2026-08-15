@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css">
+    <!-- Gumroad Script -->
+    <script src="https://gumroad.com/js/gumroad.js"></script>
 </head>
 <body>
 
@@ -22,6 +24,7 @@
             </a>
             <div class="nav-links">
                 <a href="#tones">Tones</a>
+                <a href="#pricing">Pricing</a>
                 <a href="privacy.html">Privacy</a>
                 <div id="auth-buttons" class="auth-buttons">
                     <!-- Injected by JS -->
@@ -117,6 +120,85 @@
                 <div class="tone-item">
                     <h3 class="tone-name">Polite</h3>
                     <p class="tone-text">"Hello, I hope you are well. It's truly a pleasure to speak with you again."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="section">
+        <div class="container">
+            <h2 class="section-title">Pricing</h2>
+            <p class="section-subtitle">Choose the perfect plan to communicate precisely.</p>
+            
+            <div class="pricing-grid">
+                <!-- Free Plan -->
+                <div class="pricing-card glass-card">
+                    <h3 class="tone-name" style="color: var(--dark); font-size: 1.5rem;">Free</h3>
+                    <div class="price">
+                        $0<span>/month</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            100 Rewrites per month
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            All Tones
+                        </li>
+                    </ul>
+                    <a href="dashboard.html" class="btn btn-secondary btn-block">Get Started</a>
+                </div>
+
+                <!-- Pro Plan -->
+                <div class="pricing-card glass-card premium-card">
+                    <div class="popular-badge">Most Popular</div>
+                    <h3 class="tone-name" style="color: var(--dark); font-size: 1.5rem;">Pro</h3>
+                    <div class="price">
+                        $7<span>/month</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <strong>5,000 Rewrites</strong>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            All Tones
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Priority Support
+                        </li>
+                    </ul>
+                    <!-- Add your gumroad link here -->
+                    <a href="https://gumroad.com/l/YOUR_PRO_PRODUCT_ID" class="gumroad-button btn btn-primary btn-block">Upgrade to Pro</a>
+                </div>
+
+                <!-- Ultra Plan -->
+                <div class="pricing-card glass-card ultra-card">
+                    <div class="ultra-badge">Advanced</div>
+                    <h3 class="tone-name" style="color: var(--dark); font-size: 1.5rem;">Ultra</h3>
+                    <div class="price">
+                        $12<span>/month</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <strong>20,000 Rewrites</strong>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <strong>Big Paragraphs Upgrade</strong>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            All Tones
+                        </li>
+                    </ul>
+                    <!-- Add your gumroad link here -->
+                    <a href="https://gumroad.com/l/YOUR_ULTRA_PRODUCT_ID" class="gumroad-button btn btn-premium btn-block">Get Ultra</a>
                 </div>
             </div>
         </div>
