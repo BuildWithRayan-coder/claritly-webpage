@@ -602,3 +602,7 @@ body {
     .footer-top { flex-direction: column; gap: 48px; text-align: left; }
     .footer-nav { flex-direction: column; gap: 40px; width: 100%; }
 }
+
+h2, h3, [id] {
+    scroll-margin-top: 140px;
+}
