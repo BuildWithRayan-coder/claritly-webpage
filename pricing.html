@@ -92,7 +92,7 @@
                         </li>
                     </ul>
                     <!-- Add your checkout link here -->
-                    <a href="#" class="btn btn-primary btn-block">Upgrade to Starter</a>
+                    <a href="#" id="upgrade-starter" class="btn btn-primary btn-block">Upgrade to Starter</a>
                 </div>
 
                 <!-- Pro Plan -->
@@ -125,7 +125,7 @@
                         </li>
                     </ul>
                     <!-- Add your checkout link here -->
-                    <a href="#" class="btn btn-secondary btn-block">Upgrade to Pro</a>
+                    <a href="#" id="upgrade-pro" class="btn btn-secondary btn-block">Upgrade to Pro</a>
                 </div>
             </div>
         </div>
@@ -170,5 +170,32 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/config.js"></script>
     <script src="js/auth.js"></script>
+
+    <!-- Freemius Checkout Integration -->
+    <script src="https://checkout.freemius.com/checkout.min.js"></script>
+    <script>
+        var handler = FS.Checkout.configure({
+            plugin_id:  '37113',
+            public_key: 'pk_96ae7f60b7ca38d62e0e7e28a0016',
+        });
+
+        document.getElementById('upgrade-starter').addEventListener('click', function (e) {
+            handler.open({
+                name     : 'Claritly',
+                extension: 'claritly',
+                pricing_id: '61612'
+            });
+            e.preventDefault();
+        });
+
+        document.getElementById('upgrade-pro').addEventListener('click', function (e) {
+            handler.open({
+                name     : 'Claritly',
+                extension: 'claritly',
+                pricing_id: '61667'
+            });
+            e.preventDefault();
+        });
+    </script>
 </body>
 </html>
