@@ -172,6 +172,7 @@
     <script src="js/auth.js"></script>
 
     <!-- Freemius Checkout Integration -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://checkout.freemius.com/checkout.min.js"></script>
     <script>
         var handler = FS.Checkout.configure({
@@ -182,8 +183,7 @@
         document.getElementById('upgrade-starter').addEventListener('click', function (e) {
             handler.open({
                 name     : 'Claritly',
-                extension: 'claritly',
-                pricing_id: '61612'
+                plan_id  : '61612'
             });
             e.preventDefault();
         });
@@ -191,8 +191,7 @@
         document.getElementById('upgrade-pro').addEventListener('click', function (e) {
             handler.open({
                 name     : 'Claritly',
-                extension: 'claritly',
-                pricing_id: '61667'
+                plan_id  : '61667'
             });
             e.preventDefault();
         });
