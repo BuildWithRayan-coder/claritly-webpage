@@ -3,17 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Claritly - AI Writing Assistant for Chrome</title>
+    <title>Pricing - Claritly</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css?v=2">
-    <!-- Gumroad Script -->
-    <script src="https://gumroad.com/js/gumroad.js"></script>
 </head>
-<body>
+<body class="bg-light">
 
     <!-- Navigation -->
     <nav class="navbar glass">
@@ -34,21 +32,24 @@
         </div>
     </nav>
 
-    
-<div style="padding-top: 80px;"></div>
-<!-- Pricing Section -->
-    <section id="pricing" class="section">
+    <!-- Pricing Header -->
+    <section class="section" style="padding-bottom: 40px; padding-top: 120px;">
+        <div class="container text-center">
+            <h1 class="section-title">Simple, transparent pricing</h1>
+            <p class="section-subtitle">Start for free, upgrade when you need more power.</p>
+        </div>
+    </section>
+
+    <!-- Pricing Grid -->
+    <section class="section pt-0">
         <div class="container">
-            <h2 class="section-title">Pricing</h2>
-            <p class="section-subtitle">Choose the perfect plan to communicate precisely.</p>
-            
             <div class="pricing-grid">
+                
                 <!-- Free Plan -->
-                <div class="pricing-card glass-card">
-                    <h3 class="tone-name" style="color: var(--dark); font-size: 1.5rem;">Free</h3>
-                    <div class="price">
-                        $0<span>/month</span>
-                    </div>
+                <div class="glass-card pricing-card">
+                    <h3>Free</h3>
+                    <div class="price">$0<span>/month</span></div>
+                    
                     <ul class="pricing-features">
                         <li>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -63,16 +64,16 @@
                             All Tones
                         </li>
                     </ul>
-                    <a href="dashboard.html" class="btn btn-secondary btn-block">Get Started</a>
+                    
+                    <a href="index.html" class="btn btn-secondary btn-block">Get Started</a>
                 </div>
 
                 <!-- Starter Plan -->
-                <div class="pricing-card glass-card premium-card">
+                <div class="glass-card pricing-card premium-card">
                     <div class="popular-badge">Recommended</div>
-                    <h3 class="tone-name" style="color: var(--dark); font-size: 1.5rem;">Starter</h3>
-                    <div class="price">
-                        $5<span>/month</span>
-                    </div>
+                    <h3>Starter</h3>
+                    <div class="price">$5<span>/month</span></div>
+                    
                     <ul class="pricing-features">
                         <li>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -91,16 +92,16 @@
                             Standard Support
                         </li>
                     </ul>
-                    <!-- Add your checkout link here -->
+                    
                     <a href="#" id="upgrade-starter" class="btn btn-primary btn-block">Upgrade to Starter</a>
                 </div>
 
                 <!-- Pro Plan -->
-                <div class="pricing-card glass-card">
-                    <h3 class="tone-name" style="color: var(--dark); font-size: 1.5rem;">Perfect</h3>
-                    <div class="price">
-                        $12<span>/month</span>
-                    </div>
+                <div class="glass-card pricing-card ultra-card" style="transform: scale(1.02); z-index: 10;">
+                    <div class="ultra-badge">Ultimate Power</div>
+                    <h3>Perfect</h3>
+                    <div class="price">$12<span>/month</span></div>
+                    
                     <ul class="pricing-features">
                         <li>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -118,20 +119,20 @@
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                             All Tones
                         </li>
-                    
                         <li>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                             Priority Support
                         </li>
                     </ul>
-                    <!-- Add your checkout link here -->
-                    <a href="#" id="upgrade-pro" class="btn btn-secondary btn-block">Upgrade to Pro</a>
+                    
+                    <a href="#" id="upgrade-pro" class="btn btn-premium btn-block">Upgrade to Pro</a>
                 </div>
+
             </div>
         </div>
     </section>
 
-        <!-- Footer -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-top">
@@ -155,12 +156,16 @@
                     </div>
                     <div class="footer-col">
                         <h4>Privacy & Policy</h4>
-                        <a href="privacy.html">Guide</a>
+                        <a href="privacy.html">Privacy Policy</a>
                         <a href="privacy.html#4-your-data-is-never-used-for-training">Data Safety</a>
                         <a href="privacy.html#3-how-we-use-your-information">Data Usage</a>
                     </div>
                 </div>
-            <div class="footer-bottom">
+            </div>
+            <div class="footer-middle" style="margin: 32px 0 24px; padding: 16px 20px; text-align: center; border-top: 1px solid var(--gray-light); border-bottom: 1px solid var(--gray-light);">
+                <p style="font-size: 0.85rem; color: #777; margin: 0; line-height: 1.5;"><strong>Application Purpose:</strong> Claritly is an AI writing assistant extension. We request Google Account access strictly for secure "Sign in with Google" authentication.</p>
+            </div>
+            <div class="footer-bottom" style="text-align: center; padding-top: 8px;">
                 <p>&copy; 2026 Claritly. All rights reserved.</p>
             </div>
         </div>
@@ -180,20 +185,39 @@
             public_key: 'pk_96ae7f60b7ca38d62e0e7e28a0016',
         });
 
+        async function openCheckout(planId) {
+            try {
+                // Check if user is signed in
+                const { data, error } = await window.supabaseClient.auth.getSession();
+                const session = data?.session;
+                
+                if (!session) {
+                    alert("Please sign in first to upgrade your account.");
+                    window.location.href = "index.html";
+                    return;
+                }
+                
+                // Open Freemius with pre-filled email from Supabase
+                handler.open({
+                    name       : 'Claritly',
+                    plan_id    : planId,
+                    user_email : session.user.email
+                });
+            } catch(e) {
+                console.error("Auth check failed", e);
+                alert("Please sign in first to upgrade your account.");
+                window.location.href = "index.html";
+            }
+        }
+
         document.getElementById('upgrade-starter').addEventListener('click', function (e) {
-            handler.open({
-                name     : 'Claritly',
-                plan_id  : '61612'
-            });
             e.preventDefault();
+            openCheckout('61612');
         });
 
         document.getElementById('upgrade-pro').addEventListener('click', function (e) {
-            handler.open({
-                name     : 'Claritly',
-                plan_id  : '61667'
-            });
             e.preventDefault();
+            openCheckout('61667');
         });
     </script>
 </body>
