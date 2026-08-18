@@ -50,12 +50,22 @@ document.addEventListener('DOMContentLoaded', async () => {
             .select('rewrites_count')
             .eq('user_id', user.id)
             .single();
+
+        const { data: subData, error: subError } = await window.supabaseClient
+            .from('subscriptions')
+            .select('monthly_limit, status')
+            .eq('user_id', user.id)
+            .single();
             
         let count = 0;
-        const limit = 100;
+        let limit = 50; // Default free limit
         
         if (!error && data) {
             count = data.rewrites_count || 0;
+        }
+
+        if (!subError && subData && subData.status === 'ACTIVE') {
+            limit = subData.monthly_limit || 50;
         }
         
         // Update usage count
