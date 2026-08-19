@@ -108,7 +108,7 @@
             <li>Attempt to reverse engineer, decompile, or hack the extension or its backend services.</li>
             <li>Share accounts or attempt to bypass usage limits through fraudulent means.</li>
         </ul>
-        <p><strong>Important Safety Note:</strong> While Claritly is designed to ignore sensitive fields (like passwords), you should never intentionally use Claritly to rewrite highly confidential information, financial data, or sensitive personal data.</p>
+        <p><strong>Important Safety Note:</strong> While Claritly is designed to ignore sensitive fields (like passwords), you strips you should never intentionally use Claritly to rewrite highly confidential information, financial data, or sensitive personal data.</p>
 
         <h2 id="5-no-api-keys-provided">5. No API Keys Provided</h2>
         <p>We do not provide API keys! Claritly is provided as a complete, end-user service through our Chrome extension and web interface. We do not sell, distribute, or provide access to our underlying AI provider API keys (such as DeepSeek or OpenRouter) to users under any circumstances. Your subscription grants you access to use the Claritly interface, not direct API access.</p>
@@ -173,7 +173,12 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script>
+        if (!window.supabase) {
+            document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/supabase/2.39.3/supabase.min.js"><\\/script>');
+        }
+    </script>
     <script src="js/config.js"></script>
     <script src="js/auth.js"></script>
 </body>

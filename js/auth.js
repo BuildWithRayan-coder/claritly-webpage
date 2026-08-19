@@ -32,9 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 initAuthLogic(client);
             } else {
                 attempts++;
-                if (attempts > 30) { // 3 seconds timeout
+                if (attempts > 15) { // 1.5 seconds timeout
                     clearInterval(checkInterval);
-                    console.error("Supabase client failed to load after 3 seconds.");
+                    console.error("Supabase client failed to load after 1.5 seconds.");
                     updateUI(null, null); // Fallback to logged out state
                 }
             }
