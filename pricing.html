@@ -189,7 +189,8 @@
         async function openCheckout(planId) {
             try {
                 // Check if user is signed in
-                const { data, error } = await window.supabaseClient.auth.getSession();
+                const client = typeof window.waitForSupabase === 'function' ? await window.waitForSupabase() : window.supabaseClient;
+                const { data, error } = await client.auth.getSession();
                 const session = data?.session;
                 
                 if (!session) {
@@ -219,6 +220,53 @@
         document.getElementById('upgrade-pro').addEventListener('click', function (e) {
             e.preventDefault();
             openCheckout('61667');
+        });
+
+        // Check active subscription and update UI
+        document.addEventListener('DOMContentLoaded', async () => {
+            if (typeof window.waitForSupabase === 'function') {
+                try {
+                    const client = await window.waitForSupabase();
+                    const { data: { session } } = await client.auth.getSession();
+                    
+                    if (session) {
+                        const { data: subData, error: subError } = await client
+                            .from('subscriptions')
+                            .select('monthly_limit, status')
+                            .eq('user_id', session.user.id)
+                            .single();
+                            
+                        if (!subError && subData && subData.status === 'ACTIVE') {
+                            const starterBtn = document.getElementById('upgrade-starter');
+                            const proBtn = document.getElementById('upgrade-pro');
+                            
+                            // Starter plan limit is 3000
+                            if (subData.monthly_limit === 3000) {
+                                if (starterBtn) {
+                                    starterBtn.textContent = 'Subscribed';
+                                    starterBtn.style.pointerEvents = 'none';
+                                    starterBtn.style.opacity = '0.6';
+                                }
+                            } 
+                            // Pro plan limit is 20000
+                            else if (subData.monthly_limit === 20000) {
+                                if (proBtn) {
+                                    proBtn.textContent = 'Subscribed';
+                                    proBtn.style.pointerEvents = 'none';
+                                    proBtn.style.opacity = '0.6';
+                                }
+                                if (starterBtn) {
+                                    starterBtn.textContent = 'Included in Pro';
+                                    starterBtn.style.pointerEvents = 'none';
+                                    starterBtn.style.opacity = '0.6';
+                                }
+                            }
+                        }
+                    }
+                } catch (e) {
+                    console.error("Failed to check subscription status", e);
+                }
+            }
         });
     </script>
 </body>
