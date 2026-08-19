@@ -10,26 +10,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to safely get the initialized client
     function getSupabaseClient() {
-        // Support both window.supabaseClient and the global const supabase
-        if (typeof window.supabaseClient !== 'undefined') return window.supabaseClient;
-        if (typeof supabase !== 'undefined') return supabase;
+        if (window.supabaseClient) return window.supabaseClient;
+        
+        // If config.js ran but CDN was delayed, we can initialize it now that CDN is ready
+        if (window.supabase && typeof SUPABASE_URL !== 'undefined') {
+            try {
+                window.supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                return window.supabaseClient;
+            } catch (e) {}
+        }
         return null;
     }
 
     // Wait for the client to be ready (handles CDN delays)
     let attempts = 0;
     const checkInterval = setInterval(() => {
-        const client = getSupabaseClient();
-        if (client) {
-            clearInterval(checkInterval);
-            initAuthLogic(client);
-        } else {
-            attempts++;
-            if (attempts > 20) { // 2 seconds timeout
+        try {
+            const client = getSupabaseClient();
+            if (client) {
                 clearInterval(checkInterval);
-                console.error("Supabase client failed to load.");
-                updateUI(null, null); // Fallback to logged out state
+                initAuthLogic(client);
+            } else {
+                attempts++;
+                if (attempts > 30) { // 3 seconds timeout
+                    clearInterval(checkInterval);
+                    console.error("Supabase client failed to load after 3 seconds.");
+                    updateUI(null, null); // Fallback to logged out state
+                }
             }
+        } catch (error) {
+            // Catch any unexpected TDZ ReferenceErrors so we don't get stuck in "Loading..." forever
+            console.error("Auth init error:", error);
+            attempts++;
         }
     }, 100);
 

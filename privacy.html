@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - Claritly</title>
+    <meta name="description" content="Privacy Policy for Claritly. Learn how we protect your data and privacy.">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,27 +12,63 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css?v=2">
     <style>
-        .privacy-content {
-            background: var(--white);
-            padding: 48px;
-            border-radius: 16px;
-            border: 1px solid var(--gray-light);
-            margin: 40px auto;
-            max-width: 800px;
+        .terms-header {
+            padding: 120px 0 60px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary-light) 0%, #fff 100%);
         }
-        .privacy-content h2 { margin-top: 32px; margin-bottom: 16px; }
-        .privacy-content p, .privacy-content ul { margin-bottom: 16px; color: var(--gray); }
-        .privacy-content ul { padding-left: 24px; }
+        .terms-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            line-height: 1.8;
+            color: var(--dark);
+        }
+        .terms-content h2 {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-light);
+        }
+        .terms-content h3 {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin: 24px 0 16px;
+        }
+        .terms-content p, .terms-content ul {
+            margin-bottom: 20px;
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+        .terms-content ul {
+            padding-left: 24px;
+        }
+        .terms-content li {
+            margin-bottom: 10px;
+        }
+        .last-updated {
+            color: var(--primary);
+            font-weight: 500;
+            margin-top: 20px;
+        }
+        .highlight-box {
+            background: rgba(255, 113, 57, 0.05);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 30px 0;
+        }
     </style>
 </head>
-<body class="bg-light">
+<body>
 
     <!-- Navigation -->
     <nav class="navbar glass">
         <div class="container nav-container">
             <a href="index.html" class="logo">
                 <img src="logo.png" alt="Claritly Logo" class="logo-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23FF7139%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 2L2 7l10 5 10-5-10-5z%22/%3E%3Cpath d=%22M2 17l10 5 10-5%22/%3E%3Cpath d=%22M2 12l10 5 10-5%22/%3E%3C/svg%3E'">
-                <span>Claritly</span>
+                <h1 style="font-size: inherit; font-weight: inherit; margin: 0; display: inline-block; line-height: inherit;">Claritly</h1>
             </a>
             <div class="nav-links">
                 <a href="index.html">Home</a>
@@ -44,70 +81,64 @@
         </div>
     </nav>
 
-    <!-- Privacy Content -->
-    <header style="padding-top: 120px;">
+    <!-- Header -->
+    <header class="terms-header">
         <div class="container">
-            <h1 class="section-title text-gradient">Privacy Policy &mdash; Claritly</h1>
-            <p class="section-subtitle">Last Updated: August 16, 2026</p>
-            
-            <div class="privacy-content glass-card">
-                <p>Privacy Policy</p>
-                <p>Claritly is a Chrome extension designed to help users choose the right tone and make their messages clearer, more specific, and more effective. This Privacy Policy explains what information we collect, how we use it, and how we protect it.</p>
-                <hr style="border: 0; border-top: 1px solid var(--gray-light); margin: 32px 0;">
-                <h2 id="1-about-this-policy">1. About This Policy</h2>
-                <p>This Privacy Policy applies to Claritly, a paid subscription product. We may update this policy from time to time as our product evolves; we encourage users to check back periodically for updates.</p>
-                <hr style="border: 0; border-top: 1px solid var(--gray-light); margin: 32px 0;">
-                <h2 id="2-information-we-collect">2. Information We Collect</h2>
-                <p>To provide and manage your account, we collect:</p>
-                <ul>
-                    <li>Your name</li>
-                    <li>Your email address</li>
-                    <li>Billing and payment information necessary to process your subscription (handled via our payment processor — see Section 5)</li>
-                    <li>Other minor account-related details (such as basic usage or preference settings) necessary to operate the extension</li>
-                </ul>
-                <p>We only collect what is needed to run the service — nothing more.</p>
-                <hr style="border: 0; border-top: 1px solid var(--gray-light); margin: 32px 0;">
-                <h2 id="3-how-we-use-your-information">3. How We Use Your Information</h2>
-                <p>The information we collect is used solely to:</p>
-                <ul>
-                    <li>Create and manage your account</li>
-                    <li>Process and manage your subscription and payments</li>
-                    <li>Provide customer support</li>
-                    <li>Improve the general functionality and reliability of Claritly</li>
-                </ul>
-                <hr style="border: 0; border-top: 1px solid var(--gray-light); margin: 32px 0;">
-                <h2 id="4-your-data-is-never-used-for-training">4. Your Data Is Never Used for Training</h2>
-                <p>We want to be clear and direct about this:</p>
-                <ul>
-                    <li>5 We do not use your data, messages, or chats for AI training purposes — at all.</li>
-                    <li>Your conversations and content processed through Claritly are not used to train, fine-tune, or update any AI models.</li>
-                    <li>Your personal data is not sold, rented, or shared with third parties for training or advertising purposes.</li>
-                </ul>
-                <hr style="border: 0; border-top: 1px solid var(--gray-light); margin: 32px 0;">
-                <h2 id="6-data-storage-security">6. Data Storage & Security</h2>
-                <p>We store only the minimal information described in Section 2 (name, email, billing details, and basic account details). We take reasonable measures to protect this information from unauthorized access, disclosure, or misuse.</p>
-                <hr style="border: 0; border-top: 1px solid var(--gray-light); margin: 32px 0;">
-                <h2 id="7-your-choices">7. Your Choices</h2>
-                <p>You may contact us at any time to:</p>
-                <ul>
-                    <li>Request access to the data we hold about you</li>
-                    <li>Request correction or deletion of your data</li>
-                    <li>Cancel your subscription</li>
-                    <li>Ask questions about how your information is handled</li>
-                </ul>
-                <hr style="border: 0; border-top: 1px solid var(--gray-light); margin: 32px 0;">
-                <h2 id="8-changes-to-this-policy">8. Changes to This Policy</h2>
-                <p>As Claritly continues to develop, this Privacy Policy may be updated from time to time. Continued use of the extension after changes are posted constitutes acceptance of the updated policy.</p>
-                <hr style="border: 0; border-top: 1px solid var(--gray-light); margin: 32px 0;">
-                <h2 id="9-contact-us">9. Contact Us</h2>
-                <p>If you have any questions, concerns, or requests regarding this Privacy Policy or your data, please reach out to our support team:</p>
-                <ul>
-                    <li>📧 claritly.support@gmail.com</li>
-                </ul>
-                <p>Thank you for trusting Claritly. Your privacy and trust matter to us</p>
-            </div>
+            <h1 class="hero-title">Privacy Policy</h1>
+            <p class="last-updated">Last Updated: October 2026</p>
         </div>
     </header>
+
+    <!-- Main Content -->
+    <main class="terms-content">
+        <div class="highlight-box">
+            <strong>TL;DR:</strong> We only process the text you actively highlight and choose to rewrite. We do not track your keystrokes, we do not read your general browsing data, and your rewritten text is never used to train AI models.
+        </div>
+
+        <p>At Claritly, your privacy is our top priority. This Privacy Policy outlines how we collect, use, and protect your information when you use our Chrome extension and website.</p>
+
+        <h2 id="1-what-information-we-collect">1. What Information We Collect</h2>
+        <h3>Account Information</h3>
+        <p>To use Claritly, you must sign in using Google Authentication. We collect basic profile information provided by Google, specifically your email address, to create and manage your account, verify your subscription status, and enforce usage limits (e.g., free tier allowances).</p>
+        
+        <h3>Usage Data (Text Processing)</h3>
+        <p>When you highlight text and request a rewrite, that specific text snippet is sent securely to our backend servers to be processed by our AI models (via secure APIs). <strong>We do not save, store, or log the text you send us for processing.</strong> Once the AI generates the rewritten text and sends it back to your browser, the data is discarded from our active memory.</p>
+
+        <h2 id="2-what-we-do-not-collect">2. What We DO NOT Collect</h2>
+        <ul>
+            <li><strong>No Keystroke Logging:</strong> We do not record or monitor what you type.</li>
+            <li><strong>No Screen Reading:</strong> We do not scan or read the contents of the webpages you visit. The extension only "sees" the exact text you highlight and explicitly click to rewrite.</li>
+            <li><strong>No Password Fields:</strong> The extension is technically restricted from activating on password fields, hidden fields, and read-only fields for your security.</li>
+        </ul>
+
+        <h2 id="3-how-we-use-your-information">3. How We Use Your Information</h2>
+        <p>We use your email address solely for:</p>
+        <ul>
+            <li>Authenticating your secure login.</li>
+            <li>Tracking your usage limits (Free tier vs Premium tier).</li>
+            <li>Sending essential service updates or payment-related communication.</li>
+        </ul>
+
+        <h2 id="4-your-data-is-never-used-for-training">4. Your Data is NEVER Used for Training</h2>
+        <p>The text you rewrite using Claritly is strictly confidential. We have strict agreements with our AI providers (like DeepSeek and OpenRouter) ensuring that <strong>your input data is NOT used to train, improve, or fine-tune their AI models.</strong> Your data is processed temporarily and immediately discarded.</p>
+
+        <h2 id="5-third-party-services">5. Third-Party Services</h2>
+        <p>We use trusted third-party services to operate Claritly securely:</p>
+        <ul>
+            <li><strong>Supabase:</strong> Used for secure database hosting and Google Authentication handling.</li>
+            <li><strong>Gumroad:</strong> Used for secure payment processing. We do not see or store your credit card details.</li>
+            <li><strong>AI Providers:</strong> We route requests through secure APIs (DeepSeek, OpenRouter) exclusively for generating text.</li>
+        </ul>
+
+        <h2 id="6-data-security">6. Data Security</h2>
+        <p>All communication between the Claritly Chrome extension, our servers, and third-party APIs is encrypted in transit using industry-standard HTTPS/TLS protocols. We implement strict security measures to protect your account information.</p>
+
+        <h2 id="7-your-rights">7. Your Rights</h2>
+        <p>You have the right to request the deletion of your account and associated email address from our database at any time. Simply contact our support team, and we will remove your account.</p>
+
+        <h2 id="8-contact-us">8. Contact Us</h2>
+        <p>If you have any questions or concerns about this Privacy Policy or how we handle your data, please contact us at: <strong>support@claritly.ai</strong></p>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
@@ -133,13 +164,13 @@
                     </div>
                     <div class="footer-col">
                         <h4>Privacy & Policy</h4>
-                        <a href="privacy.html">Privacy Policy</a>
+                        <a href="privacy.html">Guide</a>
                         <a href="privacy.html#4-your-data-is-never-used-for-training">Data Safety</a>
                         <a href="privacy.html#3-how-we-use-your-information">Data Usage</a>
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom" style="text-align: center; padding-top: 8px;">
+            <div class="footer-bottom">
                 <p>&copy; 2026 Claritly. All rights reserved.</p>
             </div>
         </div>
