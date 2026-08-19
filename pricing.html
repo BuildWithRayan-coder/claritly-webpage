@@ -3,152 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pricing - Claritly</title>
-    <meta name="description" content="Upgrade to Claritly Premium for unlimited rewrites and priority support.">
+    <title>Claritly - AI Writing Assistant for Chrome</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css?v=2">
     <!-- Gumroad Script -->
     <script src="https://gumroad.com/js/gumroad.js"></script>
-    <style>
-        body {
-            background-color: #fafafa;
-        }
-        
-        .pricing-header {
-            padding: 120px 0 60px;
-            text-align: center;
-        }
-        
-        .pricing-title {
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: var(--dark);
-            margin-bottom: 16px;
-            letter-spacing: -1px;
-        }
-        
-        .pricing-subtitle {
-            font-size: 1.25rem;
-            color: var(--gray);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .pricing-cards {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            padding: 40px 20px 80px;
-            max-width: 1000px;
-            margin: 0 auto;
-            flex-wrap: wrap;
-        }
-
-        .price-card {
-            background: white;
-            border-radius: 24px;
-            padding: 48px 40px;
-            width: 100%;
-            max-width: 420px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-            border: 1px solid rgba(0,0,0,0.05);
-            position: relative;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .price-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(255, 113, 57, 0.1);
-        }
-
-        .price-card.premium {
-            border: 2px solid var(--primary);
-            box-shadow: 0 20px 50px rgba(255, 113, 57, 0.15);
-        }
-
-        .popular-badge {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--primary);
-            color: white;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .plan-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 8px;
-        }
-
-        .plan-price {
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: var(--dark);
-            margin-bottom: 24px;
-            display: flex;
-            align-items: baseline;
-        }
-
-        .plan-price span {
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: var(--gray);
-            margin-left: 8px;
-        }
-
-        .plan-features {
-            list-style: none;
-            padding: 0;
-            margin: 32px 0;
-        }
-
-        .plan-features li {
-            padding: 12px 0;
-            color: var(--gray);
-            font-size: 1.05rem;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .feature-icon {
-            color: var(--primary);
-            flex-shrink: 0;
-        }
-
-        .btn-pricing {
-            width: 100%;
-            padding: 16px;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--gray-light);
-            color: var(--dark);
-        }
-
-        .btn-outline:hover {
-            border-color: var(--dark);
-        }
-    </style>
 </head>
 <body>
 
@@ -157,78 +20,115 @@
         <div class="container nav-container">
             <a href="index.html" class="logo">
                 <img src="logo.png" alt="Claritly Logo" class="logo-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23FF7139%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 2L2 7l10 5 10-5-10-5z%22/%3E%3Cpath d=%22M2 17l10 5 10-5%22/%3E%3Cpath d=%22M2 12l10 5 10-5%22/%3E%3C/svg%3E'">
-                <h1 style="font-size: inherit; font-weight: inherit; margin: 0; display: inline-block; line-height: inherit;">Claritly</h1>
+                <span>Claritly</span>
             </a>
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="index.html#tones">Tones</a>
-                <a href="pricing.html" style="color: var(--primary); font-weight: 600;">Pricing</a>
+                <a href="pricing.html">Pricing</a>
                 <div id="auth-buttons" class="auth-buttons">
                     <!-- Injected by JS -->
                 </div>
             </div>
+            </div>
         </div>
     </nav>
 
-    <header class="pricing-header">
+    
+<div style="padding-top: 80px;"></div>
+<!-- Pricing Section -->
+    <section id="pricing" class="section">
         <div class="container">
-            <h1 class="pricing-title">Simple, transparent pricing</h1>
-            <p class="pricing-subtitle">Start for free, upgrade when you need more power.</p>
-        </div>
-    </header>
-
-    <main class="pricing-cards">
-        <!-- Free Plan -->
-        <div class="price-card">
-            <h3 class="plan-name">Starter</h3>
-            <div class="plan-price">Free</div>
-            <p style="color: var(--gray); font-size: 0.95rem;">Perfect to test out the power of Claritly.</p>
+            <h2 class="section-title">Pricing</h2>
+            <p class="section-subtitle">Choose the perfect plan to communicate precisely.</p>
             
-            <ul class="plan-features">
-                <li>
-                    <svg class="feature-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    50 rewrites total
-                </li>
-                <li>
-                    <svg class="feature-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    All standard tones
-                </li>
-                <li>
-                    <svg class="feature-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    200 letters limit
-                </li>
-            </ul>
+            <div class="pricing-grid">
+                <!-- Free Plan -->
+                <div class="pricing-card glass-card">
+                    <h3 class="tone-name" style="color: var(--dark); font-size: 1.5rem;">Free</h3>
+                    <div class="price">
+                        $0<span>/month</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            50 Rewrites per month
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            200 Letters Limit
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            All Tones
+                        </li>
+                    </ul>
+                    <a href="dashboard.html" class="btn btn-secondary btn-block">Get Started</a>
+                </div>
 
-            <button class="btn btn-outline btn-pricing" onclick="document.getElementById('signup-btn').click()">Get Started</button>
+                <!-- Starter Plan -->
+                <div class="pricing-card glass-card premium-card">
+                    <div class="popular-badge">Recommended</div>
+                    <h3 class="tone-name" style="color: var(--dark); font-size: 1.5rem;">Starter</h3>
+                    <div class="price">
+                        $5<span>/month</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            3,000 Rewrites per month
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            1000 Letters Limit
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            All Tones
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Standard Support
+                        </li>
+                    </ul>
+                    <!-- Add your checkout link here -->
+                    <a href="#" id="upgrade-starter" class="btn btn-primary btn-block">Upgrade to Starter</a>
+                </div>
+
+                <!-- Pro Plan -->
+                <div class="pricing-card glass-card">
+                    <h3 class="tone-name" style="color: var(--dark); font-size: 1.5rem;">Perfect</h3>
+                    <div class="price">
+                        $12<span>/month</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            20,000 Rewrites per month
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            1000 Letters Limit
+                        </li>
+
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            All Tones
+                        </li>
+                    
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Priority Support
+                        </li>
+                    </ul>
+                    <!-- Add your checkout link here -->
+                    <a href="#" id="upgrade-pro" class="btn btn-secondary btn-block">Upgrade to Pro</a>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <!-- Premium Plan -->
-        <div class="price-card premium">
-            <div class="popular-badge">Most Popular</div>
-            <h3 class="plan-name">Premium</h3>
-            <div class="plan-price">$3.5<span>/mo</span></div>
-            <p style="color: var(--gray); font-size: 0.95rem;">For professionals who write every day.</p>
-            
-            <ul class="plan-features">
-                <li>
-                    <svg class="feature-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <strong>Unlimited</strong> rewrites
-                </li>
-                <li>
-                    <svg class="feature-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    Fastest generation speed
-                </li>
-                <li>
-                    <svg class="feature-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    1000 letters limit
-                </li>
-            </ul>
-
-            <a href="https://claritly.gumroad.com/l/premium" class="btn btn-primary btn-pricing" data-gumroad-overlay-checkout="true" style="display: block; text-decoration: none;">Upgrade to Premium</a>
-        </div>
-    </main>
-
-    <!-- Footer -->
+        <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-top">
@@ -265,7 +165,7 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         if (!window.supabase) {
             document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/supabase/2.39.3/supabase.min.js"><\\/script>');
@@ -274,5 +174,50 @@
     <script src="js/config.js"></script>
     <script src="js/auth.js"></script>
 
+    <!-- Freemius Checkout Integration -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://checkout.freemius.com/checkout.min.js"></script>
+    <script>
+        var handler = FS.Checkout.configure({
+            plugin_id:  '37113',
+            public_key: 'pk_96ae7f60b7ca38d62e0e7e28a0016',
+        });
+
+        async function openCheckout(planId) {
+            try {
+                // Check if user is signed in
+                const { data, error } = await window.supabaseClient.auth.getSession();
+                const session = data?.session;
+                
+                if (!session) {
+                    alert("Please sign in first to upgrade your account.");
+                    window.location.href = "index.html";
+                    return;
+                }
+                
+                // Open Freemius with pre-filled email from Supabase
+                handler.open({
+                    name       : 'Claritly',
+                    plan_id    : planId,
+                    user_email : session.user.email
+                });
+            } catch(e) {
+                console.error("Auth check failed", e);
+                alert("Please sign in first to upgrade your account.");
+                window.location.href = "index.html";
+            }
+        }
+
+        document.getElementById('upgrade-starter').addEventListener('click', function (e) {
+            e.preventDefault();
+            openCheckout('61612');
+        });
+
+        document.getElementById('upgrade-pro').addEventListener('click', function (e) {
+            e.preventDefault();
+            openCheckout('61667');
+        });
+    </script>
 </body>
 </html>
+
