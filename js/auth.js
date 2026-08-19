@@ -111,8 +111,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (session) {
             // Logged in state
             authButtonsContainer.innerHTML = `
-                <a href="dashboard.html" class="btn btn-primary" style="margin-right: 12px;">Dashboard</a>
-                <button id="logout-btn" class="btn" style="background: transparent; color: var(--dark); font-weight: 500; border: none; font-size: 1rem; cursor: pointer;">Log out</button>
+                <button id="logout-btn" class="btn" style="background: transparent; color: var(--dark); font-weight: 500; margin-right: 12px; padding: 12px 24px; cursor: pointer; border: none; font-size: 1rem;">Log out</button>
+                <a href="dashboard.html" class="btn btn-primary">Dashboard</a>
             `;
             
             const logoutBtn = document.getElementById('logout-btn');
