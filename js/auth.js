@@ -3,28 +3,53 @@
 document.addEventListener('DOMContentLoaded', () => {
     const authButtonsContainer = document.getElementById('auth-buttons');
     
-    // Render logged out state immediately so the buttons are always visible on load
-    updateUI(null);
-    
-    // Check Supabase asynchronously
-    if (typeof window.supabaseClient !== 'undefined') {
-        window.supabaseClient.auth.getSession()
+    // Show a safe loading state initially while we wait for Supabase to initialize
+    if (authButtonsContainer) {
+        authButtonsContainer.innerHTML = `<span style="color: var(--gray); font-size: 0.95rem; margin-right: 12px;">Loading...</span>`;
+    }
+
+    // Function to safely get the initialized client
+    function getSupabaseClient() {
+        // Support both window.supabaseClient and the global const supabase
+        if (typeof window.supabaseClient !== 'undefined') return window.supabaseClient;
+        if (typeof supabase !== 'undefined') return supabase;
+        return null;
+    }
+
+    // Wait for the client to be ready (handles CDN delays)
+    let attempts = 0;
+    const checkInterval = setInterval(() => {
+        const client = getSupabaseClient();
+        if (client) {
+            clearInterval(checkInterval);
+            initAuthLogic(client);
+        } else {
+            attempts++;
+            if (attempts > 20) { // 2 seconds timeout
+                clearInterval(checkInterval);
+                console.error("Supabase client failed to load.");
+                updateUI(null, null); // Fallback to logged out state
+            }
+        }
+    }, 100);
+
+    function initAuthLogic(client) {
+        client.auth.getSession()
             .then(({ data: { session } }) => {
-                updateUI(session);
+                updateUI(session, client);
             })
             .catch(err => {
                 console.error("Supabase getSession error:", err);
+                updateUI(null, client);
             });
 
         // Listen for auth changes
-        window.supabaseClient.auth.onAuthStateChange((_event, session) => {
-            updateUI(session);
+        client.auth.onAuthStateChange((_event, session) => {
+            updateUI(session, client);
         });
-    } else {
-        console.error("Supabase client is not initialized.");
     }
 
-    function updateUI(session) {
+    function updateUI(session, client) {
         // 1. Sync auth state to extension
         try {
             window.postMessage({ 
@@ -37,14 +62,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 2. Manage Top Banner for logged-in state
         let banner = document.getElementById('claritly-auth-banner');
-        if (session && session.user) {
+        if (session) {
             if (!banner) {
                 banner = document.createElement('div');
                 banner.id = 'claritly-auth-banner';
                 banner.style = "background: #2563eb; color: white; text-align: center; padding: 12px 20px; font-weight: 500; font-size: 0.95rem; display: flex; justify-content: center; align-items: center; gap: 8px; z-index: 1000; position: relative;";
                 document.body.insertBefore(banner, document.body.firstChild);
             }
-            const email = session.user.email || 'User';
+            const email = session.user.email;
             banner.innerHTML = `
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
@@ -61,15 +86,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (session) {
             // Logged in state
-            let isDashboard = window.location.pathname.includes('dashboard');
-            if (isDashboard) {
-                authButtonsContainer.innerHTML = `
-                    <a href="index.html" class="btn btn-primary" style="margin-right: 12px;">Home</a>
-                `;
-            } else {
-                authButtonsContainer.innerHTML = `
-                    <a href="dashboard.html" class="btn btn-primary" style="margin-right: 12px;">Dashboard</a>
-                `;
+            authButtonsContainer.innerHTML = `
+                <a href="dashboard.html" class="btn btn-primary" style="margin-right: 12px;">Dashboard</a>
+                <button id="logout-btn" class="btn" style="background: transparent; color: var(--dark); font-weight: 500; border: none; font-size: 1rem; cursor: pointer;">Log out</button>
+            `;
+            
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', async () => {
+                    await client.auth.signOut();
+                    window.location.href = 'index.html';
+                });
             }
         } else {
             // Logged out state
@@ -80,48 +107,23 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const handleAuth = async (e) => {
                 e.preventDefault();
-                console.log("Auth button clicked!");
-                
-                if (typeof window.supabaseClient === 'undefined') {
+                if (!client) {
                     alert("Authentication is currently unavailable. Supabase is not loaded.");
                     return;
                 }
-                
-                try {
-                    // Redirect back to the exact page the user is currently on (index.html)
-                    let redirectUrl = window.location.href;
-                    
-                    const { data, error } = await window.supabaseClient.auth.signInWithOAuth({
-                        provider: 'google',
-                        options: {
-                            redirectTo: redirectUrl
-                        }
-                    });
-                    
-                    if (error) {
-                        console.error("Auth Error:", error.message);
-                        alert("Authentication Error: " + error.message + "\\n\\nDid you enable Google Auth in Supabase?");
-                    }
-                } catch (err) {
-                    console.error("Critical Auth Error:", err);
-                    alert("Critical Error: " + err.message);
+                const { data, error } = await client.auth.signInWithOAuth({
+                    provider: 'google'
+                });
+                if (error) {
+                    console.error("Auth Error:", error.message);
+                    alert("Authentication Error: " + error.message);
                 }
             };
 
-            // Force fresh listeners by replacing the nodes
-            let loginBtn = document.getElementById('login-btn');
-            let signupBtn = document.getElementById('signup-btn');
-            
-            if (loginBtn) {
-                let newLoginBtn = loginBtn.cloneNode(true);
-                loginBtn.parentNode.replaceChild(newLoginBtn, loginBtn);
-                newLoginBtn.addEventListener('click', handleAuth);
-            }
-            if (signupBtn) {
-                let newSignupBtn = signupBtn.cloneNode(true);
-                signupBtn.parentNode.replaceChild(newSignupBtn, signupBtn);
-                newSignupBtn.addEventListener('click', handleAuth);
-            }
+            const loginBtn = document.getElementById('login-btn');
+            const signupBtn = document.getElementById('signup-btn');
+            if (loginBtn) loginBtn.addEventListener('click', handleAuth);
+            if (signupBtn) signupBtn.addEventListener('click', handleAuth);
         }
     }
 });
