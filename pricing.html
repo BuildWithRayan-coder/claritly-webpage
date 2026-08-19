@@ -167,8 +167,11 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
+        // Fallback: if primary CDN (jsdelivr) failed to load, try unpkg
         if (!window.supabase) {
-            document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/supabase/2.39.3/supabase.min.js"><\\/script>');
+            var s = document.createElement('script');
+            s.src = 'https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase-js.min.js';
+            document.head.appendChild(s);
         }
     </script>
     <script src="js/config.js"></script>

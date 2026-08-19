@@ -8,12 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
         authButtonsContainer.innerHTML = `<span style="color: var(--gray); font-size: 0.95rem; margin-right: 12px;">Loading...</span>`;
     }
 
-    // Function to safely get the initialized client
+    // Function to safely get the initialized client (synchronous check)
     function getSupabaseClient() {
         if (window.supabaseClient) return window.supabaseClient;
         
         // If config.js ran but CDN was delayed, we can initialize it now that CDN is ready
-        if (window.supabase && typeof SUPABASE_URL !== 'undefined') {
+        if (window.supabase && window.supabase.createClient && typeof SUPABASE_URL !== 'undefined') {
             try {
                 window.supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
                 return window.supabaseClient;
@@ -22,28 +22,40 @@ document.addEventListener('DOMContentLoaded', () => {
         return null;
     }
 
-    // Wait for the client to be ready (handles CDN delays)
-    let attempts = 0;
-    const checkInterval = setInterval(() => {
-        try {
-            const client = getSupabaseClient();
-            if (client) {
-                clearInterval(checkInterval);
+    // Use waitForSupabase() from config.js for robust initialization with fallback CDN
+    if (typeof window.waitForSupabase === 'function') {
+        window.waitForSupabase()
+            .then(client => {
                 initAuthLogic(client);
-            } else {
-                attempts++;
-                if (attempts > 50) { // 5 seconds timeout
+            })
+            .catch(err => {
+                console.error("[Claritly] Supabase init failed:", err);
+                updateUI(null, null); // Fallback to logged out state
+            });
+    } else {
+        // Legacy fallback: poll if waitForSupabase is not available
+        let attempts = 0;
+        const checkInterval = setInterval(() => {
+            try {
+                const client = getSupabaseClient();
+                if (client) {
                     clearInterval(checkInterval);
-                    console.error("Supabase client failed to load after 5 seconds.");
-                    updateUI(null, null); // Fallback to logged out state
+                    initAuthLogic(client);
+                } else {
+                    attempts++;
+                    if (attempts > 80) { // 8 seconds timeout
+                        clearInterval(checkInterval);
+                        console.error("Supabase client failed to load after 8 seconds.");
+                        updateUI(null, null); // Fallback to logged out state
+                    }
                 }
+            } catch (error) {
+                // Catch any unexpected TDZ ReferenceErrors so we don't get stuck in "Loading..." forever
+                console.error("Auth init error:", error);
+                attempts++;
             }
-        } catch (error) {
-            // Catch any unexpected TDZ ReferenceErrors so we don't get stuck in "Loading..." forever
-            console.error("Auth init error:", error);
-            attempts++;
-        }
-    }, 100);
+        }, 100);
+    }
 
     function initAuthLogic(client) {
         client.auth.getSession()
@@ -120,9 +132,17 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const handleAuth = async (e) => {
                 e.preventDefault();
-                const activeClient = getSupabaseClient();
+                // Try to get client, with one more async attempt if not ready
+                let activeClient = getSupabaseClient();
+                if (!activeClient && typeof window.waitForSupabase === 'function') {
+                    try {
+                        activeClient = await window.waitForSupabase();
+                    } catch (err) {
+                        // Still failed
+                    }
+                }
                 if (!activeClient) {
-                    alert("Authentication is currently unavailable. Supabase is still loading. Please check your internet connection or try again in a few seconds.");
+                    alert("Authentication is temporarily unavailable. Please check your internet connection and refresh the page.");
                     return;
                 }
                 const { data, error } = await activeClient.auth.signInWithOAuth({
