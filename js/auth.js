@@ -32,9 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 initAuthLogic(client);
             } else {
                 attempts++;
-                if (attempts > 15) { // 1.5 seconds timeout
+                if (attempts > 50) { // 5 seconds timeout
                     clearInterval(checkInterval);
-                    console.error("Supabase client failed to load after 1.5 seconds.");
+                    console.error("Supabase client failed to load after 5 seconds.");
                     updateUI(null, null); // Fallback to logged out state
                 }
             }
@@ -106,7 +106,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const logoutBtn = document.getElementById('logout-btn');
             if (logoutBtn) {
                 logoutBtn.addEventListener('click', async () => {
-                    await client.auth.signOut();
+                    const currentClient = getSupabaseClient();
+                    if (currentClient) await currentClient.auth.signOut();
                     window.location.href = 'index.html';
                 });
             }
@@ -119,11 +120,12 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const handleAuth = async (e) => {
                 e.preventDefault();
-                if (!client) {
-                    alert("Authentication is currently unavailable. Supabase is not loaded.");
+                const activeClient = getSupabaseClient();
+                if (!activeClient) {
+                    alert("Authentication is currently unavailable. Supabase is still loading. Please check your internet connection or try again in a few seconds.");
                     return;
                 }
-                const { data, error } = await client.auth.signInWithOAuth({
+                const { data, error } = await activeClient.auth.signInWithOAuth({
                     provider: 'google'
                 });
                 if (error) {
