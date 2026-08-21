@@ -313,39 +313,45 @@ body {
     margin-bottom: 12px;
 }
 
-
-.platforms-logos {
+.marquee-wrapper {
     display: flex;
-    justify-content: center;
+    overflow: hidden;
+    width: 100%;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+.marquee-track {
+    display: flex;
+    flex-shrink: 0;
+    min-width: 100%;
+    animation: marquee-scroll 35s linear infinite;
+}
+
+.marquee-group {
+    display: flex;
+    justify-content: space-around;
     align-items: center;
-    gap: 32px; /* Increased gap */
+    gap: 72px; /* Space between icons */
+    padding-right: 72px; /* Space after the group */
+    min-width: 100%;
+    flex-shrink: 0;
+}
+
+@keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
 }
 
 .platform-icon {
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
-    filter: grayscale(20%) opacity(90%); /* Slight mute when not hovered */
+    filter: grayscale(100%) brightness(0) opacity(40%); /* Super premium flat grey monochrome */
     cursor: pointer;
 }
 
 .platform-icon:hover {
     transform: scale(1.15) translateY(-4px);
-    filter: grayscale(0%) opacity(100%) drop-shadow(0 10px 15px rgba(0,0,0,0.1));
-}
-
-.platforms-more {
-    font-size: 1rem; /* Slightly larger */
-    font-weight: 600;
-    color: #64748b;
-    background: #f1f5f9;
-    padding: 6px 14px;
-    border-radius: 24px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-.platforms-more:hover {
-    background: #e2e8f0;
-    color: #334155;
-    transform: translateY(-2px);
+    filter: grayscale(0%) brightness(1) opacity(100%) drop-shadow(0 10px 15px rgba(0,0,0,0.1));
 }
 
 
@@ -513,6 +519,13 @@ details[open] .faq-question::after {
 .pricing-card {
     position: relative;
     padding: 40px 24px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.pricing-card .btn {
+    margin-top: auto;
 }
 
 .premium-card {
