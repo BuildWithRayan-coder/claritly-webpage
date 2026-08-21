@@ -326,30 +326,37 @@ body {
     display: flex;
     overflow: hidden;
     width: 100%;
-    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    padding: 24px 0; /* Prevents icons and shadows from being clipped on hover/click */
+    -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
 }
 
 .marquee-track {
     display: flex;
+    width: max-content;
     flex-shrink: 0;
-    min-width: 100%;
-    animation: marquee-scroll 35s linear infinite;
+    animation: marquee-scroll 45s linear infinite;
+}
+
+.marquee-wrapper:hover .marquee-track {
+    animation-play-state: paused;
 }
 
 .marquee-group {
     display: flex;
-    justify-content: space-around;
     align-items: center;
-    gap: 88px; /* Generous breathing room between large icons */
-    padding-right: 88px;
-    min-width: 100%;
+    gap: 80px; /* Consistent pixel gap everywhere */
+    padding-right: 80px; /* Exact matching gap between groups */
     flex-shrink: 0;
 }
 
 @keyframes marquee-scroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
 }
 
 .platform-icon {
@@ -363,7 +370,11 @@ body {
 
 .platform-icon:hover {
     transform: scale(1.18) translateY(-6px);
-    filter: grayscale(0%) brightness(1) opacity(100%) drop-shadow(0 12px 20px rgba(0,0,0,0.12));
+    filter: grayscale(0%) brightness(1) opacity(100%) drop-shadow(0 12px 20px rgba(0,0,0,0.15));
+}
+
+.platform-icon:active {
+    transform: scale(1.08) translateY(-2px);
 }
 
 
