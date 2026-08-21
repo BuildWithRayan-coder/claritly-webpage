@@ -341,8 +341,8 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    gap: 72px; /* Space between icons */
-    padding-right: 72px; /* Space after the group */
+    gap: 88px; /* Generous breathing room between large icons */
+    padding-right: 88px;
     min-width: 100%;
     flex-shrink: 0;
 }
@@ -353,14 +353,17 @@ body {
 }
 
 .platform-icon {
+    width: 58px;
+    height: 58px;
+    flex-shrink: 0;
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
     filter: grayscale(100%) brightness(0) opacity(40%); /* Super premium flat grey monochrome */
     cursor: pointer;
 }
 
 .platform-icon:hover {
-    transform: scale(1.15) translateY(-4px);
-    filter: grayscale(0%) brightness(1) opacity(100%) drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+    transform: scale(1.18) translateY(-6px);
+    filter: grayscale(0%) brightness(1) opacity(100%) drop-shadow(0 12px 20px rgba(0,0,0,0.12));
 }
 
 
