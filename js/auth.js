@@ -205,6 +205,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (btn) btn.innerText = "...";
                     await client.from('blocked_websites').delete().eq('id', id);
                     populateDropdownData(); // refresh list
+                    // Force the extension to sync the updated blocklist
+                    updateUI(session, client);
                 } catch (e) {
                     console.error("Failed to unblock", e);
                 }
