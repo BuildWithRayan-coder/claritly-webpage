@@ -682,6 +682,146 @@ details[open] .faq-question::after {
     border-top: 1px solid var(--gray-light);
 }
 
+/* Profile Dropdown (Premium) */
+.profile-dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+    object-fit: cover;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.profile-avatar:hover {
+    border-color: var(--primary);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(255, 113, 57, 0.2);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 320px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    padding: 16px 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1000;
+}
+
+.dropdown-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 24px;
+    color: var(--dark);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.dropdown-item:hover:not(.disabled) {
+    background: rgba(0, 0, 0, 0.03);
+    color: var(--primary);
+}
+
+.dropdown-item.disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+.dropdown-divider {
+    height: 1px;
+    background: var(--gray-light);
+    margin: 8px 0;
+}
+
+.blocked-websites-header {
+    padding: 8px 24px 4px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--gray);
+    letter-spacing: 0.05em;
+}
+
+.blocked-websites-list {
+    max-height: 180px;
+    overflow-y: auto;
+    margin: 4px 0;
+}
+
+.blocked-websites-list::-webkit-scrollbar {
+    width: 6px;
+}
+.blocked-websites-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+.blocked-websites-list::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 10px;
+}
+
+.blocked-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 24px;
+    font-size: 0.9rem;
+    color: var(--gray);
+}
+
+.unblock-btn {
+    background: transparent;
+    border: 1px solid #ff4d4f;
+    color: #ff4d4f;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.unblock-btn:hover {
+    background: #ff4d4f;
+    color: white;
+}
+
+.empty-blocklist {
+    padding: 12px 24px;
+    font-size: 0.85rem;
+    color: #999;
+    font-style: italic;
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
     .pricing-grid { grid-template-columns: 1fr; max-width: 500px; }
