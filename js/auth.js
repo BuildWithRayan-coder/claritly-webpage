@@ -110,54 +110,151 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (session) {
             // Logged in state
+            const avatarUrl = session.user.user_metadata?.avatar_url || 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23666"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>';
+            
             authButtonsContainer.innerHTML = `
-                <button id="logout-btn" class="btn" style="background: transparent; color: var(--dark); font-weight: 500; margin-right: 12px; padding: 12px 24px; cursor: pointer; border: none; font-size: 1rem;">Log out</button>
-                <a href="dashboard.html" class="btn btn-primary">Dashboard</a>
+                <div class="profile-dropdown-container">
+                    <img src="${avatarUrl}" class="profile-avatar" id="profile-btn" alt="Profile" referrerpolicy="no-referrer">
+                    <div class="dropdown-menu" id="profile-dropdown">
+                        <a href="dashboard.html" class="dropdown-item">Dashboard</a>
+                        <a href="#" class="dropdown-item disabled" id="subscription-btn">Subscription Management</a>
+                        <div class="dropdown-divider"></div>
+                        <div class="blocked-websites-header">Blocked Websites</div>
+                        <div class="blocked-websites-list" id="blocked-list">
+                            <div class="empty-blocklist">Loading...</div>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item" id="logout-btn" style="color: #ff4d4f;">Log out</button>
+                    </div>
+                </div>
             `;
             
+            const profileBtn = document.getElementById('profile-btn');
+            const dropdown = document.getElementById('profile-dropdown');
             const logoutBtn = document.getElementById('logout-btn');
-            if (logoutBtn) {
-                logoutBtn.addEventListener('click', async () => {
-                    const currentClient = getSupabaseClient();
-                    if (currentClient) await currentClient.auth.signOut();
-                    window.location.href = 'index.html';
-                });
+            const blockedList = document.getElementById('blocked-list');
+            const subscriptionBtn = document.getElementById('subscription-btn');
+
+            // Toggle dropdown
+            profileBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                dropdown.classList.toggle('active');
+            });
+
+            // Close on click outside
+            document.addEventListener('click', (e) => {
+                if (!dropdown.contains(e.target) && e.target !== profileBtn) {
+                    dropdown.classList.remove('active');
+                }
+            });
+
+            // Handle logout
+            logoutBtn.addEventListener('click', async () => {
+                const currentClient = getSupabaseClient();
+                if (currentClient) await currentClient.auth.signOut();
+                window.location.href = 'index.html';
+            });
+
+            // Fetch Data for Dropdown
+            async function populateDropdownData() {
+                try {
+                    // Fetch subscription
+                    const { data: subData } = await client
+                        .from('subscriptions')
+                        .select('plan, status')
+                        .eq('user_id', session.user.id)
+                        .single();
+
+                    if (subData && subData.plan && subData.plan.toLowerCase() !== 'free') {
+                        subscriptionBtn.classList.remove('disabled');
+                        // Placeholder for Freemius portal
+                        subscriptionBtn.href = "https://freemius.com/help/documentation/selling-with-freemius/freemius-checkout-buy-button/"; 
+                    } else {
+                        subscriptionBtn.classList.add('disabled');
+                        subscriptionBtn.title = "Available for Premium users";
+                    }
+
+                    // Fetch blocked websites
+                    const { data: websites } = await client
+                        .from('blocked_websites')
+                        .select('domain, id')
+                        .eq('user_id', session.user.id);
+                        
+                    if (!websites || websites.length === 0) {
+                        blockedList.innerHTML = '<div class="empty-blocklist">No websites blocked</div>';
+                    } else {
+                        blockedList.innerHTML = websites.map(site => `
+                            <div class="blocked-item" data-id="${site.id}">
+                                <span>${site.domain}</span>
+                                <button class="unblock-btn" onclick="unblockWebsite('${site.id}')">Unblock</button>
+                            </div>
+                        `).join('');
+                    }
+                } catch (err) {
+                    console.error("Failed to fetch dropdown data", err);
+                    blockedList.innerHTML = '<div class="empty-blocklist">Error loading data</div>';
+                }
             }
+
+            populateDropdownData();
+
+            // Make unblock function globally available for inline onclick
+            window.unblockWebsite = async function(id) {
+                try {
+                    const btn = document.querySelector(`.blocked-item[data-id="${id}"] .unblock-btn`);
+                    if (btn) btn.innerText = "...";
+                    await client.from('blocked_websites').delete().eq('id', id);
+                    populateDropdownData(); // refresh list
+                } catch (e) {
+                    console.error("Failed to unblock", e);
+                }
+            };
+
         } else {
             // Logged out state
+            const defaultAvatar = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23999"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>';
             authButtonsContainer.innerHTML = `
-                <button id="login-btn" class="btn" style="background: transparent; color: var(--dark); font-weight: 500; margin-right: 12px; padding: 12px 24px; cursor: pointer; border: none; font-size: 1rem;">Login</button>
-                <button id="signup-btn" class="btn btn-primary">Sign up</button>
+                <div class="profile-dropdown-container">
+                    <img src="${defaultAvatar}" class="profile-avatar" id="profile-btn-out" alt="Profile">
+                    <div class="dropdown-menu" id="profile-dropdown-out" style="width: 200px;">
+                        <button class="dropdown-item" id="login-dropdown-btn">Login / Sign up</button>
+                    </div>
+                </div>
             `;
             
+            const profileBtn = document.getElementById('profile-btn-out');
+            const dropdown = document.getElementById('profile-dropdown-out');
+            
+            profileBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                dropdown.classList.toggle('active');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!dropdown.contains(e.target) && e.target !== profileBtn) {
+                    dropdown.classList.remove('active');
+                }
+            });
+
             const handleAuth = async (e) => {
                 e.preventDefault();
-                // Try to get client, with one more async attempt if not ready
                 let activeClient = getSupabaseClient();
                 if (!activeClient && typeof window.waitForSupabase === 'function') {
-                    try {
-                        activeClient = await window.waitForSupabase();
-                    } catch (err) {
-                        // Still failed
-                    }
+                    try { activeClient = await window.waitForSupabase(); } catch (err) {}
                 }
                 if (!activeClient) {
                     alert("Authentication is temporarily unavailable. Please check your internet connection and refresh the page.");
                     return;
                 }
-                const { data, error } = await activeClient.auth.signInWithOAuth({
-                    provider: 'google'
-                });
+                const { error } = await activeClient.auth.signInWithOAuth({ provider: 'google' });
                 if (error) {
                     console.error("Auth Error:", error.message);
                     alert("Authentication Error: " + error.message);
                 }
             };
 
-            const loginBtn = document.getElementById('login-btn');
-            const signupBtn = document.getElementById('signup-btn');
+            const loginBtn = document.getElementById('login-dropdown-btn');
             if (loginBtn) loginBtn.addEventListener('click', handleAuth);
-            if (signupBtn) signupBtn.addEventListener('click', handleAuth);
         }
     }
 });
