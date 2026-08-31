@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const { data: subData, error: subError } = await client
             .from('subscriptions')
-            .select('monthly_limit, status')
+            .select('monthly_limit, status, plan')
             .eq('user_id', user.id)
             .single();
             
@@ -77,6 +77,86 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if (!subError && subData && subData.status === 'ACTIVE') {
             limit = subData.monthly_limit || 50;
+            
+            // Payment Management UI
+            if (subData.plan && subData.plan !== 'FREE') {
+                const pmSection = document.getElementById('payment-management-section');
+                if (pmSection) {
+                    pmSection.style.display = 'block';
+                    pmSection.innerHTML = `
+                        <div class="dashboard-card payment-card">
+                            <div class="dashboard-card-header" style="border-bottom: none; padding-bottom: 0;">
+                                <div>
+                                    <h2 class="dashboard-card-title">
+                                        <div class="dashboard-card-icon" style="background: rgba(239, 68, 68, 0.1); color: #ef4444;">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                                <rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect>
+                                                <line x1="2" y1="10" x2="22" y2="10"></line>
+                                            </svg>
+                                        </div>
+                                        Payment Management
+                                        <span class="blocked-badge" style="background: #ecfdf5; color: #059669; border-color: #a7f3d0; text-transform: uppercase;">${subData.plan} PLAN</span>
+                                    </h2>
+                                    <p class="dashboard-card-subtitle" style="margin-top: 10px;">Your subscription is currently active. You can cancel at any time to stop future billing.</p>
+                                </div>
+                            </div>
+                            <div class="payment-actions" style="margin-top: 24px;">
+                                <button id="btn-cancel-sub" class="btn btn-secondary" style="color: #ef4444; border-color: #fee2e2; width: 100%; transition: all 0.2s ease;">
+                                    Cancel Subscription
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    const cancelBtn = document.getElementById('btn-cancel-sub');
+                    if (cancelBtn) {
+                        cancelBtn.addEventListener('mouseover', () => {
+                            cancelBtn.style.background = '#fef2f2';
+                            cancelBtn.style.borderColor = '#fca5a5';
+                        });
+                        cancelBtn.addEventListener('mouseout', () => {
+                            cancelBtn.style.background = '#ffffff';
+                            cancelBtn.style.borderColor = '#fee2e2';
+                        });
+                        
+                        cancelBtn.addEventListener('click', async (e) => {
+                            const btn = e.target;
+                            if (!confirm("Are you sure you want to cancel your subscription? This cannot be undone.")) return;
+                            
+                            btn.disabled = true;
+                            const originalHtml = btn.innerHTML;
+                            btn.innerHTML = 'Cancelling...';
+                            
+                            try {
+                                const { data, error } = await client.functions.invoke('cancel-subscription');
+                                if (error) throw error;
+                                
+                                pmSection.innerHTML = `
+                                    <div class="dashboard-card payment-card" style="background: #f0fdf4; border-color: #bbf7d0;">
+                                        <div class="dashboard-card-header" style="border-bottom: none; padding-bottom: 0;">
+                                            <div>
+                                                <h2 class="dashboard-card-title" style="color: #166534;">
+                                                    Subscription Cancelled
+                                                </h2>
+                                                <p class="dashboard-card-subtitle" style="margin-top: 10px; color: #15803d;">Your subscription has been cancelled and will not renew. You can safely subscribe again from the Pricing tab.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `;
+                                
+                                // Re-sync with background script to reset usage right away
+                                window.postMessage({ type: 'CLARITLY_AUTH_SYNC', session: JSON.parse(JSON.stringify(session)) }, '*');
+                                
+                            } catch (err) {
+                                console.error("Cancel failed:", err);
+                                alert("Failed to cancel subscription: " + err.message);
+                                btn.disabled = false;
+                                btn.innerHTML = originalHtml;
+                            }
+                        });
+                    }
+                }
+            }
         }
         
         // Update usage count
