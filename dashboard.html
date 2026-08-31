@@ -141,6 +141,31 @@
         </div>
 
         <p class="usage-caption">AI rewrites used</p>
+
+        <!-- Blocked Websites Section -->
+        <div class="dashboard-card" id="blocked-websites-section">
+            <div class="dashboard-card-header">
+                <div>
+                    <h2 class="dashboard-card-title">
+                        <div class="dashboard-card-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                            </svg>
+                        </div>
+                        Blocked Websites
+                        <span class="blocked-badge" id="blocked-count">0</span>
+                    </h2>
+                    <p class="dashboard-card-subtitle">Claritly is turned off on these domains. Manage or unblock anytime.</p>
+                </div>
+            </div>
+
+            <div class="dashboard-blocked-list" id="dashboard-blocked-list">
+                <div class="empty-blocklist-state">
+                    <span class="empty-blocklist-text">Loading blocked websites...</span>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Scripts -->
