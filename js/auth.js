@@ -117,7 +117,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     <img src="${avatarUrl}" class="profile-avatar" id="profile-btn" alt="Profile" referrerpolicy="no-referrer">
                     <div class="dropdown-menu" id="profile-dropdown">
                         <a href="dashboard.html" class="dropdown-item">Dashboard</a>
-                        <a href="#" class="dropdown-item disabled" id="subscription-btn">Subscription Management</a>
                         <div class="dropdown-divider"></div>
                         <div class="blocked-websites-header">Blocked Websites</div>
                         <div class="blocked-websites-list" id="blocked-list">
@@ -133,7 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const dropdown = document.getElementById('profile-dropdown');
             const logoutBtn = document.getElementById('logout-btn');
             const blockedList = document.getElementById('blocked-list');
-            const subscriptionBtn = document.getElementById('subscription-btn');
 
             // Toggle dropdown
             profileBtn.addEventListener('click', (e) => {
@@ -158,22 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // Fetch Data for Dropdown
             async function populateDropdownData() {
                 try {
-                    // Fetch subscription
-                    const { data: subData } = await client
-                        .from('subscriptions')
-                        .select('plan, status')
-                        .eq('user_id', session.user.id)
-                        .single();
-
-                    if (subData && subData.plan && subData.plan.toLowerCase() !== 'free') {
-                        subscriptionBtn.classList.remove('disabled');
-                        subscriptionBtn.href = "https://customers.freemius.com/login"; 
-                    } else {
-                        subscriptionBtn.classList.add('disabled');
-                        subscriptionBtn.removeAttribute('href');
-                        subscriptionBtn.title = "Available for Premium users";
-                    }
-
                     // Fetch blocked websites
                     const { data: websites } = await client
                         .from('blocked_websites')
