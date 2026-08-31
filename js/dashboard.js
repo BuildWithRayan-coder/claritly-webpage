@@ -116,7 +116,19 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (error) throw error;
 
             const count = websites ? websites.length : 0;
-            if (blockedCountEl) blockedCountEl.textContent = count;
+            if (blockedCountEl) {
+                blockedCountEl.textContent = `${count} / 10`;
+                if (count >= 10) {
+                    blockedCountEl.style.color = '#dc3545'; // red color for limit reached
+                } else {
+                    blockedCountEl.style.color = ''; // default
+                }
+            }
+            
+            const limitNotice = document.getElementById('blocked-limit-notice');
+            if (limitNotice) {
+                limitNotice.style.display = count >= 10 ? 'block' : 'none';
+            }
 
             if (!websites || websites.length === 0) {
                 blockedListEl.innerHTML = `
@@ -140,7 +152,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <line x1="2" y1="12" x2="22" y2="12"></line>
-                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"></path>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
                             </svg>
                         </div>
                         <span class="blocked-domain-name">${escapeHtml(site.domain)}</span>
