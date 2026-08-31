@@ -167,8 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     if (subData && subData.plan && subData.plan.toLowerCase() !== 'free') {
                         subscriptionBtn.classList.remove('disabled');
-                        // Placeholder for Freemius portal
-                        subscriptionBtn.href = "https://freemius.com/help/documentation/selling-with-freemius/freemius-checkout-buy-button/"; 
+                        subscriptionBtn.href = "https://customers.freemius.com/login"; 
                     } else {
                         subscriptionBtn.classList.add('disabled');
                         subscriptionBtn.removeAttribute('href');
