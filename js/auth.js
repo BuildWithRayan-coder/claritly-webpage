@@ -84,6 +84,22 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error("Failed to broadcast auth state", e);
         }
 
+        // Listen for requests from the extension
+        if (!window.claritlyAuthSyncListenerAdded) {
+            window.claritlyAuthSyncListenerAdded = true;
+            window.addEventListener("message", (event) => {
+                if (event.source !== window || !event.data) return;
+                if (event.data.type === "CLARITLY_REQUEST_AUTH_SYNC") {
+                    try {
+                        window.postMessage({ 
+                            type: 'CLARITLY_AUTH_SYNC', 
+                            session: session ? JSON.parse(JSON.stringify(session)) : null 
+                        }, '*');
+                    } catch (e) {}
+                }
+            });
+        }
+
         // 2. Manage Top Banner for logged-in state
         let banner = document.getElementById('claritly-auth-banner');
         if (session) {
@@ -145,9 +161,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Handle logout
             logoutBtn.addEventListener('click', async () => {
+                logoutBtn.textContent = 'Logging out...';
                 const currentClient = getSupabaseClient();
                 if (currentClient) await currentClient.auth.signOut();
-                window.location.href = 'index.html';
+                // Wait briefly to allow auth sync message to reach extension before unloading page
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 500);
             });
         } else {
             // Logged out state
