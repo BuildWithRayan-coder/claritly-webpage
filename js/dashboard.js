@@ -97,9 +97,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                                 <div class="dashboard-card-header" style="border-bottom: none; padding-bottom: 0;">
                                     <div>
                                         <h2 class="dashboard-card-title" style="color: #166534;">
-                                            Subscription Cancelled (${currentPlan} PLAN)
+                                            Auto-Renewal Cancelled (${currentPlan} PLAN)
                                         </h2>
-                                        <p class="dashboard-card-subtitle" style="margin-top: 10px; color: #15803d;">Your subscription has been cancelled and will not renew. You can safely subscribe again from the Pricing tab.</p>
+                                        <p class="dashboard-card-subtitle" style="margin-top: 10px; color: #15803d;">Your subscription will not auto-renew and you will not be charged again. Your paid features remain fully active for the rest of your current billing period.</p>
                                     </div>
                                 </div>
                             </div>
