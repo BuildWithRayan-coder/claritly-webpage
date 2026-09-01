@@ -233,33 +233,52 @@
                     if (session) {
                         const { data: subData, error: subError } = await client
                             .from('subscriptions')
-                            .select('monthly_limit, status')
+                            .select('plan, status, monthly_limit, current_period_end')
                             .eq('user_id', session.user.id)
-                            .single();
+                            .maybeSingle();
                             
-                        if (!subError && subData && subData.status === 'ACTIVE') {
-                            const starterBtn = document.getElementById('upgrade-starter');
-                            const proBtn = document.getElementById('upgrade-pro');
+                        if (!subError && subData) {
+                            const currentPlan = (subData.plan || '').trim().toUpperCase();
+                            const isPaidPlan = currentPlan !== '' && currentPlan !== 'FREE';
+                            const periodEnd = subData.current_period_end ? new Date(subData.current_period_end) : null;
+                            const stillHasTime = periodEnd && periodEnd > new Date();
                             
-                            // Starter plan limit is 3000
-                            if (subData.monthly_limit === 3000) {
-                                if (starterBtn) {
-                                    starterBtn.textContent = 'Subscribed';
-                                    starterBtn.style.pointerEvents = 'none';
-                                    starterBtn.style.opacity = '0.6';
-                                }
-                            } 
-                            // Pro plan limit is 20000
-                            else if (subData.monthly_limit === 20000) {
-                                if (proBtn) {
-                                    proBtn.textContent = 'Subscribed';
-                                    proBtn.style.pointerEvents = 'none';
-                                    proBtn.style.opacity = '0.6';
-                                }
-                                if (starterBtn) {
-                                    starterBtn.textContent = 'Included in Pro';
-                                    starterBtn.style.pointerEvents = 'none';
-                                    starterBtn.style.opacity = '0.6';
+                            // Grey out buttons if user has a paid plan AND their billing period hasn't ended yet
+                            if (isPaidPlan && stillHasTime) {
+                                const starterBtn = document.getElementById('upgrade-starter');
+                                const proBtn = document.getElementById('upgrade-pro');
+                                const isCancelled = (subData.status || '').toUpperCase() === 'CANCELLED';
+                                const endDate = periodEnd.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+                                
+                                if (currentPlan === 'STARTER') {
+                                    if (starterBtn) {
+                                        starterBtn.textContent = isCancelled ? `Active until ${endDate}` : 'Subscribed';
+                                        starterBtn.style.pointerEvents = 'none';
+                                        starterBtn.style.opacity = '0.5';
+                                        starterBtn.style.cursor = 'not-allowed';
+                                        starterBtn.style.background = '#e5e7eb';
+                                        starterBtn.style.color = '#9ca3af';
+                                        starterBtn.style.border = '1px solid #d1d5db';
+                                    }
+                                } else if (currentPlan === 'PRO') {
+                                    if (proBtn) {
+                                        proBtn.textContent = isCancelled ? `Active until ${endDate}` : 'Subscribed';
+                                        proBtn.style.pointerEvents = 'none';
+                                        proBtn.style.opacity = '0.5';
+                                        proBtn.style.cursor = 'not-allowed';
+                                        proBtn.style.background = '#e5e7eb';
+                                        proBtn.style.color = '#9ca3af';
+                                        proBtn.style.border = '1px solid #d1d5db';
+                                    }
+                                    if (starterBtn) {
+                                        starterBtn.textContent = 'Included in Pro';
+                                        starterBtn.style.pointerEvents = 'none';
+                                        starterBtn.style.opacity = '0.5';
+                                        starterBtn.style.cursor = 'not-allowed';
+                                        starterBtn.style.background = '#e5e7eb';
+                                        starterBtn.style.color = '#9ca3af';
+                                        starterBtn.style.border = '1px solid #d1d5db';
+                                    }
                                 }
                             }
                         }
