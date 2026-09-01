@@ -253,31 +253,16 @@
                                 if (currentPlan === 'STARTER') {
                                     if (starterBtn) {
                                         starterBtn.textContent = isCancelled ? `Active until ${endDate}` : 'Subscribed';
-                                        starterBtn.style.pointerEvents = 'none';
-                                        starterBtn.style.opacity = '0.5';
-                                        starterBtn.style.cursor = 'not-allowed';
-                                        starterBtn.style.background = '#e5e7eb';
-                                        starterBtn.style.color = '#9ca3af';
-                                        starterBtn.style.border = '1px solid #d1d5db';
+                                        starterBtn.classList.add('btn-disabled-plan');
                                     }
                                 } else if (currentPlan === 'PRO') {
                                     if (proBtn) {
                                         proBtn.textContent = isCancelled ? `Active until ${endDate}` : 'Subscribed';
-                                        proBtn.style.pointerEvents = 'none';
-                                        proBtn.style.opacity = '0.5';
-                                        proBtn.style.cursor = 'not-allowed';
-                                        proBtn.style.background = '#e5e7eb';
-                                        proBtn.style.color = '#9ca3af';
-                                        proBtn.style.border = '1px solid #d1d5db';
+                                        proBtn.classList.add('btn-disabled-plan');
                                     }
                                     if (starterBtn) {
                                         starterBtn.textContent = 'Included in Pro';
-                                        starterBtn.style.pointerEvents = 'none';
-                                        starterBtn.style.opacity = '0.5';
-                                        starterBtn.style.cursor = 'not-allowed';
-                                        starterBtn.style.background = '#e5e7eb';
-                                        starterBtn.style.color = '#9ca3af';
-                                        starterBtn.style.border = '1px solid #d1d5db';
+                                        starterBtn.classList.add('btn-disabled-plan');
                                     }
                                 }
                             }

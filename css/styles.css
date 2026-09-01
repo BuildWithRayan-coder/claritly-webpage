@@ -130,6 +130,18 @@ body {
     box-shadow: 0 3px 8px rgba(255, 82, 22, 0.35), inset 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
+.btn-disabled-plan {
+    background-color: #f1f5f9 !important;
+    color: #334155 !important;
+    border: 1.5px solid #cbd5e1 !important;
+    box-shadow: none !important;
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+    opacity: 1 !important;
+    font-weight: 600 !important;
+    transform: none !important;
+}
+
 .btn-large {
     padding: 16px 32px;
     font-size: 1.125rem;
