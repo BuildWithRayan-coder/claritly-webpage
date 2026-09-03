@@ -456,6 +456,22 @@ body {
     background: var(--dark);
     border-radius: 14px;
     padding: 22px 32px;
+    position: relative;
+}
+
+.tones-original-label {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffffff;
+    color: #1a1a2e;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 4px 16px;
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
 }
 
 .tones-original p {
