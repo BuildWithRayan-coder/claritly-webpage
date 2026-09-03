@@ -450,32 +450,17 @@ body {
 
 /* Tones */
 .tones-original {
-    max-width: 580px;
-    margin: 0 auto 40px;
+    max-width: 640px;
+    margin: 0 auto 44px;
     text-align: center;
     background: var(--dark);
     border-radius: 14px;
-    padding: 20px 28px;
-    position: relative;
-}
-
-.tones-original-label {
-    position: absolute;
-    top: -11px;
-    left: 24px;
-    background: var(--primary);
-    color: #fff;
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: 3px 12px;
-    border-radius: 20px;
+    padding: 22px 32px;
 }
 
 .tones-original p {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 1.1rem;
     font-style: italic;
     margin: 0;
     line-height: 1.6;
@@ -483,117 +468,64 @@ body {
 
 .tones-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-    max-width: 900px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 780px;
     margin: 0 auto;
 }
 
 .tone-card {
-    background: var(--tone-bg, #f8fafc);
-    border: 1.5px solid transparent;
-    border-radius: 16px;
-    padding: 24px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 28px 26px;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    position: relative;
-    overflow: hidden;
-}
-
-.tone-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: var(--tone-accent, var(--primary));
-    border-radius: 16px 16px 0 0;
-    opacity: 0.7;
-    transition: opacity 0.3s ease;
 }
 
 .tone-card:hover {
-    border-color: var(--tone-accent, var(--primary));
-    transform: translateY(-4px);
-    box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.12);
-}
-
-.tone-card:hover::before {
-    opacity: 1;
+    border-color: #1a1a2e;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.1);
 }
 
 .tone-card-header {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     margin-bottom: 14px;
 }
 
 .tone-icon {
-    font-size: 1.4rem;
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.8);
+    background: #f1f5f9;
     border-radius: 10px;
     flex-shrink: 0;
+    color: #1a1a2e;
 }
 
 .tone-label {
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     font-weight: 700;
-    color: var(--dark);
+    color: #1a1a2e;
     margin: 0;
 }
 
 .tone-result {
-    font-size: 0.9rem;
-    color: #475569;
-    line-height: 1.6;
+    font-size: 0.95rem;
+    color: #64748b;
+    line-height: 1.7;
     margin: 0;
     font-style: italic;
 }
 
-/* Tones grid: 3 on top, 2 centered below */
-.tones-grid .tone-card:nth-child(4),
-.tones-grid .tone-card:nth-child(5) {
-    grid-column: span 1;
-}
-
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     .tones-grid {
         grid-template-columns: 1fr;
         gap: 14px;
-    }
-}
-
-@media (min-width: 769px) {
-    .tones-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    .tones-grid .tone-card:nth-child(4) {
-        grid-column: 1 / 2;
-        margin-left: auto;
-        width: 100%;
-    }
-    .tones-grid .tone-card:nth-child(5) {
-        grid-column: 2 / 4;
-        max-width: calc(50% - 9px);
-    }
-    /* Center the last two cards */
-    .tones-grid {
-        justify-items: center;
-    }
-    .tones-grid .tone-card {
-        width: 100%;
-    }
-    .tones-grid .tone-card:nth-child(4) {
-        justify-self: end;
-    }
-    .tones-grid .tone-card:nth-child(5) {
-        justify-self: start;
     }
 }
 
