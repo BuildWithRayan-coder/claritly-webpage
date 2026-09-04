@@ -450,13 +450,14 @@ body {
 
 /* Tones */
 .tones-original {
-    max-width: 640px;
-    margin: 0 auto 44px;
+    max-width: 720px;
+    margin: 0 auto 56px;
     text-align: center;
-    background: var(--dark);
-    border-radius: 14px;
-    padding: 22px 32px;
+    background: linear-gradient(145deg, #1f2937, #111827);
+    border-radius: 16px;
+    padding: 32px 40px;
     position: relative;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
 }
 
 .tones-original-label {
@@ -475,9 +476,10 @@ body {
 }
 
 .tones-original p {
-    color: rgba(255, 255, 255, 0.65);
-    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 1.25rem;
     font-style: italic;
+    font-weight: 500;
     margin: 0;
     line-height: 1.6;
 }
@@ -485,23 +487,23 @@ body {
 .tones-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    max-width: 780px;
+    gap: 24px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
 .tone-card {
     background: #ffffff;
     border: 1px solid #e2e8f0;
-    border-radius: 14px;
-    padding: 28px 26px;
+    border-radius: 16px;
+    padding: 32px 30px;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .tone-card:hover {
-    border-color: #1a1a2e;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.1);
+    border-color: #cbd5e1;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.08);
 }
 
 .tone-card-header {
@@ -524,15 +526,15 @@ body {
 }
 
 .tone-label {
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: #1a1a2e;
     margin: 0;
 }
 
 .tone-result {
-    font-size: 0.95rem;
-    color: #64748b;
+    font-size: 1.05rem;
+    color: #475569;
     line-height: 1.7;
     margin: 0;
     font-style: italic;
